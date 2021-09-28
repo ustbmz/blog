@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <ul class="item">
-      <li>Html</li>
+      <li class="avtive">Html</li>
       <li>Css</li>
       <li>JavaScript</li>
       <li>Vue</li>
@@ -53,5 +53,9 @@ export default defineComponent({
   li {
     padding: 0 20px;
   }
+}
+
+.avtive {
+  background: #04aa6d;
 }
 </style>

@@ -26,20 +26,26 @@ export default defineComponent({
 .container {
   display: flex;
   flex-flow: row nowrap;
-  align-items: flex-start;
-  width: 100%;
-  margin: 0;
+  justify-content: space-around;
+  margin: 10px;
+  min-height: 670px;
+  background: #f4f5f5;
   .sidebar {
-    width: 35%;
+    width: 25%;
+  }
+  .content {
+    margin-left: 10px;
+    width: 75%;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
   }
 }
 
-@media screen and (max-width: 1024px) {
-  html body {
-    margin-left: 140px;
-  }
-  .sidebar {
+@media screen and (max-width: 900px) {
+  .container .sidebar {
     display: none;
+  }
+  .container .content {
+    width: 100%;
   }
 }
 </style>
