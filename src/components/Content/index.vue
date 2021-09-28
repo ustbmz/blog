@@ -35,5 +35,6 @@ export default defineComponent({
 <style scoped>
 .main {
   width: 100%;
+  min-height: 880px;
 }
 </style>

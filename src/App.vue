@@ -10,7 +10,7 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
-  background: #e7e9eb;
+  background: #e9ecef;
 }
 ul,
 li {
