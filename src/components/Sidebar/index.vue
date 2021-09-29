@@ -25,9 +25,9 @@ import store from '@/store'
 import { defineComponent, computed } from 'vue'
 
 export default defineComponent({
-  setup (props, { emit }) {
+  setup () {
     const changeContent = (item: MDInfo) => {
-      emit('handleItem', item)
+      store.commit('setContent', item)
     }
 
     return {
