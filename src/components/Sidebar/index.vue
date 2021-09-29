@@ -27,7 +27,7 @@ import { defineComponent, computed } from 'vue'
 export default defineComponent({
   setup () {
     const changeContent = (item: MDInfo) => {
-      store.commit('setContent', item)
+      store.commit('setContent', item.content)
     }
 
     return {
