@@ -1,17 +1,26 @@
 <template>
   <div class="main">
-    <v-md-preview :text="text"></v-md-preview>
+    <Suspense>
+      <template #default>
+        <v-md-preview :text="text"></v-md-preview>
+      </template>
+
+      <template #fallback>
+        loading
+      </template>
+    </Suspense>
   </div>
 </template>
 
 <script>
 import { computed, defineComponent } from 'vue'
+import store from '@/store'
 export default defineComponent({
   props: ['content'],
-  setup (props) {
+  setup () {
     return {
       text: computed(() => {
-        return props.content
+        return store.state.content
       })
     }
   }

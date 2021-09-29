@@ -1,5 +1,5 @@
 <template>
-  <my-navbar v-model:catalog="state.title"></my-navbar>
+  <my-header v-model:catalog="state.title"></my-header>
   <div class="container">
     <div class="sidebar">
       <my-sidebar
@@ -16,11 +16,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, watchEffect } from 'vue'
-import TopNav from '@/components/TopNav/index.vue'
+import { computed, defineComponent, onMounted, toRef, watch } from 'vue'
+import MyHeader from '@/components/MyHeader/index.vue'
 import Sidebar from '@/components/Sidebar/index.vue'
 import Content from '@/components/Content/index.vue'
-import Footer from '@/components/Footer/index.vue'
+import MyFooter from '@/components/MyFooter/index.vue'
 import { BlogService } from '@/common/provides/blog'
 import store from '@/store'
 import { MDInfo } from '@/common/interface'
@@ -28,29 +28,29 @@ import { MDInfo } from '@/common/interface'
 export default defineComponent({
   name: 'Home',
   components: {
-    'my-navbar': TopNav,
+    'my-header': MyHeader,
     'my-sidebar': Sidebar,
     'my-content': Content,
-    'my-footer': Footer
+    'my-footer': MyFooter
   },
   setup () {
-    const { state, handleGetlist } = BlogService()
+    const { state, handleGetlist, init } = BlogService()
 
     onMounted(() => {
       console.log('List vue onMounted')
-      state.type = 'html'
-      handleGetlist().then(() => {
-        state.content = state.lists[1].content
-      })
+      state.title = 'html'
+      handleGetlist()
     })
 
     const changeContent = (item: MDInfo) => {
       state.content = item.content
     }
 
-    watchEffect(() => {
-      console.log(state.title)
-      store.commit('setTitle', state.title)
+    const current = toRef(state, 'title')
+    watch(current, (newval, oldval) => {
+      console.log('🚀 ~ file: Home.vue ~ line 60 ~ watch ~ oldval', oldval)
+      store.commit('setTitle', newval)
+      init()
     })
 
     return {
@@ -75,10 +75,13 @@ export default defineComponent({
   margin: 10px;
   min-height: 670px;
   .sidebar {
+    margin-top: 44px;
     width: 25%;
   }
   .content {
     margin-left: 10px;
+    margin-top: 44px;
+
     width: 75%;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
     background: #f8f9fa;

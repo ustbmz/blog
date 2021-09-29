@@ -9,11 +9,7 @@
         >
       </div>
       <ul class="nav flex-column">
-        <li
-          class="nav-item"
-          v-for="item in state.lists"
-          :key="'item' + item.index"
-        >
+        <li class="nav-item" v-for="item in lists" :key="'item' + item.index">
           <a class="nav-link active" href="#" @click="changeContent(item)">{{
             item.title
           }}</a>
@@ -26,26 +22,18 @@
 <script lang="ts">
 import { MDInfo } from '@/common/interface'
 import store from '@/store'
-import { defineComponent, reactive, onMounted, computed } from 'vue'
+import { defineComponent, computed } from 'vue'
 
 export default defineComponent({
-  props: ['list'],
   setup (props, { emit }) {
-    const state = reactive({
-      lists: []
-    })
-    onMounted(() => {
-      setTimeout(() => {
-        state.lists = props.list
-      }, 2000)
-    })
-
     const changeContent = (item: MDInfo) => {
       emit('handleItem', item)
     }
 
     return {
-      state,
+      lists: computed(() => {
+        return store.state.mdInfolist
+      }),
       changeContent,
       titleName: computed(() => {
         return store.state.title

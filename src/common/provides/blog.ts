@@ -1,7 +1,6 @@
 import { getList } from '@/api/content'
 import store from '@/store'
 import { reactive } from '@vue/runtime-dom'
-import { useRoute } from 'vue-router'
 import { HttpResponse, MDInfo } from '../interface'
 
 export const BlogService = () => {
@@ -12,33 +11,24 @@ export const BlogService = () => {
     isEnd: false,
     isRepeat: false,
     isTop: 0,
-    isShow: true,
     content: '' as any,
     status: '',
-    type: 'html',
     sort: '',
     page: 0,
     limit: 20,
     lists: [{} as MDInfo]
   })
 
-  const route = useRoute()
-  console.log(route.params)
-  const catalog = route?.params?.catalog as string
-  if (typeof catalog !== 'undefined' || catalog !== '') {
-    state.catalog = catalog
-  }
-
   const handleGetlist = async () => {
-    console.log('handleGetlist state.catalog:' + state.catalog)
-    if (state.isRepeat) return
-    if (state.isEnd) return
+    console.log('handleGetlist state.title:' + state.title)
+    // if (state.isRepeat) return
+    // if (state.isEnd) return
     state.isRepeat = true
     const options = {
       page: state.page,
       limit: state.limit,
       sort: state.sort,
-      type: state.type,
+      type: state.title.toLowerCase(),
       status: state.status
     }
     try {
@@ -55,8 +45,8 @@ export const BlogService = () => {
           state.lists = state.lists.concat(res.data)
         }
         store.commit('setMDInfo', state.lists)
+        store.commit('setContent', state.lists[0].content)
       }
-      console.log(state.lists)
     } catch (error) {
       console.log('list Service catch errinfo:' + error)
     }
