@@ -10,9 +10,9 @@
       </div>
       <ul class="nav flex-column">
         <li class="nav-item" v-for="item in lists" :key="'item' + item.index">
-          <a class="nav-link active" href="#" @click="changeContent(item)">{{
-            item.title
-          }}</a>
+          <a class="nav-link active" href="#" @click="changeContent(item)">
+            {{ item.title }}
+          </a>
         </li>
       </ul>
     </div>
