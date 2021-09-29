@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="sider">
-      <div class="title-name">Nav Title Name</div>
+      <div class="title-name">{{ titleName }} 文章列表</div>
       <div class="samp-str">
         <samp
           >This text is meant to be treated as sample output from a computer
@@ -9,23 +9,14 @@
         >
       </div>
       <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link disabled"
-            href="#"
-            tabindex="-1"
-            aria-disabled="true"
-            >Disabled</a
-          >
+        <li
+          class="nav-item"
+          v-for="item in state.lists"
+          :key="'item' + item.index"
+        >
+          <a class="nav-link active" href="#" @click="changeContent(item)">{{
+            item.title
+          }}</a>
         </li>
       </ul>
     </div>
@@ -33,11 +24,33 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { MDInfo } from '@/common/interface'
+import store from '@/store'
+import { defineComponent, reactive, onMounted, computed } from 'vue'
 
 export default defineComponent({
-  setup () {
-    return {}
+  props: ['list'],
+  setup (props, { emit }) {
+    const state = reactive({
+      lists: []
+    })
+    onMounted(() => {
+      setTimeout(() => {
+        state.lists = props.list
+      }, 2000)
+    })
+
+    const changeContent = (item: MDInfo) => {
+      emit('handleItem', item)
+    }
+
+    return {
+      state,
+      changeContent,
+      titleName: computed(() => {
+        return store.state.title
+      })
+    }
   }
 })
 </script>

@@ -1,23 +1,64 @@
 <template>
   <div class="navbar">
     <ul class="item">
-      <li class="avtive">Html</li>
-      <li>Css</li>
-      <li>JavaScript</li>
-      <li>Vue</li>
-      <li>LeetCode</li>
-      <li>Server</li>
+      <li
+        v-for="item in lists"
+        :key="'item' + item.name"
+        :class="{ avtive: catalog === item.name }"
+        @update:catalog="title = $event"
+        @click="change(item)"
+      >
+        {{ item.name }}
+      </li>
     </ul>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script>
+import { defineComponent, reactive, toRefs } from 'vue'
 
 export default defineComponent({
   name: 'navbar',
-  setup () {
-    return {}
+  props: {
+    catalog: {
+      type: String,
+      default: 'Html'
+    }
+  },
+  setup (props, { emit }) {
+    const state = reactive({
+      catalog: 'Html',
+      lists: [
+        {
+          name: 'Html'
+        },
+        {
+          name: 'Css'
+        },
+        {
+          name: 'JavaScript'
+        },
+        {
+          name: 'LeetCode'
+        },
+        {
+          name: 'Vue'
+        },
+        {
+          name: 'Server'
+        }
+      ]
+    })
+    const change = item => {
+      // eslint-disable-next-line vue/no-mutating-props
+      state.catalog = item.name
+      emit('update:catalog', state.catalog)
+    }
+
+    return {
+      change,
+      ...toRefs(state)
+    }
   }
 })
 </script>

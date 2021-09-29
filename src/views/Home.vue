@@ -1,18 +1,29 @@
 <template>
-  <my-navbar></my-navbar>
+  <my-navbar v-model:catalog="state.title"></my-navbar>
   <div class="container">
-    <div class="sidebar"><my-sidebar></my-sidebar></div>
-    <div class="content"><my-content></my-content></div>
+    <div class="sidebar">
+      <my-sidebar
+        :list="MDfileWithType"
+        v-model:item="state.title"
+        @handleItem="changeContent"
+      ></my-sidebar>
+    </div>
+    <div class="content">
+      <my-content :content="initMD"></my-content>
+    </div>
   </div>
   <my-footer></my-footer>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, onMounted, watchEffect } from 'vue'
 import TopNav from '@/components/TopNav/index.vue'
 import Sidebar from '@/components/Sidebar/index.vue'
 import Content from '@/components/Content/index.vue'
 import Footer from '@/components/Footer/index.vue'
+import { BlogService } from '@/common/provides/blog'
+import store from '@/store'
+import { MDInfo } from '@/common/interface'
 
 export default defineComponent({
   name: 'Home',
@@ -21,6 +32,37 @@ export default defineComponent({
     'my-sidebar': Sidebar,
     'my-content': Content,
     'my-footer': Footer
+  },
+  setup () {
+    const { state, handleGetlist } = BlogService()
+
+    onMounted(() => {
+      console.log('List vue onMounted')
+      state.type = 'html'
+      handleGetlist().then(() => {
+        state.content = state.lists[1].content
+      })
+    })
+
+    const changeContent = (item: MDInfo) => {
+      state.content = item.content
+    }
+
+    watchEffect(() => {
+      console.log(state.title)
+      store.commit('setTitle', state.title)
+    })
+
+    return {
+      state,
+      changeContent,
+      MDfileWithType: computed(() => {
+        return state.lists
+      }),
+      initMD: computed(() => {
+        return state.content
+      })
+    }
   }
 })
 </script>
