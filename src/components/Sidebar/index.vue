@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="sider">
-      <div class="title-name">{{ titleName }}文章列表</div>
+      <div class="title-name">{{ titleName }} 文章列表</div>
       <ul class="nav flex-column">
         <li
           class="nav-item"
