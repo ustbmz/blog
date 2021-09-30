@@ -2,12 +2,6 @@
   <div>
     <div class="sider">
       <div class="title-name">{{ titleName }}文章列表</div>
-      <div class="samp-str">
-        <samp
-          >This text is meant to be treated as sample output from a computer
-          program.</samp
-        >
-      </div>
       <ul class="nav flex-column">
         <li
           class="nav-item"
@@ -68,16 +62,11 @@ export default defineComponent({
     text-align: center;
     font-size: 24px;
     line-height: 64px;
-    margin-bottom: 30px;
-    background-color: #04aa6d;
-  }
-  .samp-str {
-    padding: 10px 30px;
   }
 
   .nav-item {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-flow: row nowrap;
     text-overflow: ellipsis;
