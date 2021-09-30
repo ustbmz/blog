@@ -31,5 +31,6 @@ export default defineComponent({
 .main {
   width: 100%;
   min-height: 880px;
+  max-width: 1181px;
 }
 </style>

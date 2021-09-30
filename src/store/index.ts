@@ -8,6 +8,7 @@ export default createStore({
     token: '',
     mdInfolist: {} as MDInfo,
     content: '' as string,
+    contentname: '' as string,
     num: 0
   },
   mutations: {
@@ -25,6 +26,9 @@ export default createStore({
       state.mdInfolist = value
       // 本地存储用户的基本信
       localStorage.setItem('mdInfolist', JSON.stringify(value))
+    },
+    setContentName (state, value: string) {
+      state.contentname = value
     },
     setContent (state, value: string) {
       state.content = value

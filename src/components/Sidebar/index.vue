@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="sider">
-      <div class="title-name">{{ titleName }} 文章列表</div>
+      <div class="title-name">{{ titleName }}文章列表</div>
       <div class="samp-str">
         <samp
           >This text is meant to be treated as sample output from a computer
@@ -9,8 +9,14 @@
         >
       </div>
       <ul class="nav flex-column">
-        <li class="nav-item" v-for="item in lists" :key="'item' + item.index">
-          <a class="nav-link active" href="#" @click="changeContent(item)">
+        <li
+          class="nav-item"
+          v-for="item in lists"
+          :key="'item' + item.index"
+          :class="{ active: contentName === item.title }"
+          @click="changeContent(item)"
+        >
+          <a class="nav-link">
             {{ item.title }}
           </a>
         </li>
@@ -28,6 +34,7 @@ export default defineComponent({
   setup () {
     const changeContent = (item: MDInfo) => {
       store.commit('setContent', item.content)
+      store.commit('setContentName', item.title)
     }
 
     return {
@@ -37,6 +44,9 @@ export default defineComponent({
       changeContent,
       titleName: computed(() => {
         return store.state.title
+      }),
+      contentName: computed(() => {
+        return store.state.contentname
       })
     }
   }
@@ -45,23 +55,42 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .sider {
-  width: 100%;
   min-height: 670px;
-  background: #f8f9fa;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
-  border-right: 1px solid rebeccapurple;
+  min-width: 300px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  background: #fff;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  z-index: 2;
 
   .title-name {
-    width: 100%;
     text-align: center;
     font-size: 24px;
+    line-height: 64px;
     margin-bottom: 30px;
+    background-color: #04aa6d;
   }
   .samp-str {
     padding: 10px 30px;
   }
-  .nav {
-    margin: 20px;
+
+  .nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    text-overflow: ellipsis;
+    height: 60px;
+    transition: #fff 0.3s;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+    &.active {
+      background: #04aa6d;
+      color: #fff;
+    }
+    .nav-link {
+      padding: 10px;
+    }
   }
 }
 </style>

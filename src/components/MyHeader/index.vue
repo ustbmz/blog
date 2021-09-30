@@ -76,12 +76,14 @@ export default defineComponent({
   padding: 0;
   letter-spacing: 1px;
   font-family: 'Source Sans Pro', sans-serif;
-  height: 44px;
+  height: 54px;
+  line-height: 54px;
   overflow: hidden;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .item {
@@ -89,7 +91,7 @@ export default defineComponent({
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  line-height: 40px;
+  line-height: 50px;
   margin: 2px;
 
   li {

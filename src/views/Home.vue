@@ -71,16 +71,16 @@ export default defineComponent({
 .container {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 10px;
   min-height: 670px;
   .sidebar {
-    margin-top: 44px;
+    margin-top: 54px;
     width: 25%;
   }
   .content {
     margin-left: 10px;
-    margin-top: 44px;
+    margin-top: 54px;
 
     width: 75%;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);

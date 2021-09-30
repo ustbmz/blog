@@ -3,7 +3,8 @@
 </template>
 
 <style lang="scss">
-html,
+$item-bg: #04aa6d;
+
 body {
   font-family: Verdana, sans-serif;
   font-size: 15px;
@@ -17,5 +18,10 @@ li {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #343a40;
 }
 </style>

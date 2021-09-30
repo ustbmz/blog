@@ -46,6 +46,7 @@ export const BlogService = () => {
         }
         store.commit('setMDInfo', state.lists)
         store.commit('setContent', state.lists[0].content)
+        store.commit('setContentName', state.lists[0].title)
       }
     } catch (error) {
       console.log('list Service catch errinfo:' + error)
