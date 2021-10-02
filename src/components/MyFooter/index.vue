@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">Footer</div>
+  <div class="footer"></div>
   <div class="bt-footer">©2021 ustbmz. All rights reserved</div>
 </template>
 
@@ -11,14 +11,16 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
+  position: relative;
   width: 100%;
-  min-height: 170px;
+  height: 170px;
   bottom: 0;
-  background-color: rgb(25, 26, 31);
+  background-color: #1e212c;
 }
 .bt-footer {
+  position: relative;
   height: 60px;
-  background-color: rgb(18, 18, 22);
+  background-color: #1e212c;
   color: #fff;
   line-height: 60px;
   text-align: center;

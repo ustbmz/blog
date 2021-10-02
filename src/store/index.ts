@@ -6,10 +6,9 @@ export default createStore({
   state: {
     title: '',
     token: '',
-    mdInfolist: {} as MDInfo,
-    content: '' as string,
-    contentname: '' as string,
-    num: 0
+    mdlists: {} as MDInfo,
+    mditem: {} as MDInfo,
+    contentname: '' as string
   },
   mutations: {
     setTitle (state, value) {
@@ -20,28 +19,19 @@ export default createStore({
       state.token = value
       localStorage.setItem('token', value)
     },
-    // 设置用户的基本信息
-    setMDInfo (state, value) {
+    setMDList (state, value) {
       if (value === '') return
-      state.mdInfolist = value
-      // 本地存储用户的基本信
-      localStorage.setItem('mdInfolist', JSON.stringify(value))
+      state.mdlists = value
+      // localStorage.setItem('mdlists', JSON.stringify(value))
     },
     setContentName (state, value: string) {
       state.contentname = value
     },
-    setContent (state, value: string) {
-      state.content = value
-    },
-    setMessage (state, value) {
-      state.num = value.message ? value.message : 0
+    setMDitem (state, value: MDInfo) {
+      state.mditem = value
     }
   },
-  actions: {
-    message ({ commit }, msg) {
-      commit('setMessage', msg)
-    }
-  },
+  actions: {},
   modules: {},
   plugins: !debug ? [createLogger()] : []
 })

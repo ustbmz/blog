@@ -1,35 +1,30 @@
 <template>
-  <my-header v-model:catalog="state.title"></my-header>
+  <my-header v-model:catalog="state.title" ref="header"></my-header>
   <div class="container">
-    <div class="sidebar">
-      <my-sidebar
-        :list="MDfileWithType"
-        v-model:item="state.title"
-        @handleItem="changeContent"
-      ></my-sidebar>
-    </div>
     <div class="content">
       <my-content :content="initMD"></my-content>
     </div>
   </div>
   <my-footer></my-footer>
+  <a class="btn-scroll-top show" @click="scrollTop">
+    <span class="btn-scroll-top-tooltip text-muted fs-sm me-2"></span>
+    <i class="btn-scroll-top-icon ci-angle-up"></i>
+  </a>
 </template>
 
 <script lang="ts">
+import { ScrollToElem } from '@/utils/common.js'
 import { computed, defineComponent, onMounted, toRef, watch } from 'vue'
 import MyHeader from '@/components/MyHeader/index.vue'
-import Sidebar from '@/components/Sidebar/index.vue'
 import Content from '@/components/Content/index.vue'
 import MyFooter from '@/components/MyFooter/index.vue'
 import { BlogService } from '@/common/provides/blog'
 import store from '@/store'
-import { MDInfo } from '@/common/interface'
 
 export default defineComponent({
   name: 'Home',
   components: {
     'my-header': MyHeader,
-    'my-sidebar': Sidebar,
     'my-content': Content,
     'my-footer': MyFooter
   },
@@ -42,10 +37,6 @@ export default defineComponent({
       handleGetlist()
     })
 
-    const changeContent = (item: MDInfo) => {
-      state.content = item.content
-    }
-
     const current = toRef(state, 'title')
     watch(current, (newval, oldval) => {
       console.log('🚀 ~ file: Home.vue ~ line 60 ~ watch ~ oldval', oldval)
@@ -53,15 +44,16 @@ export default defineComponent({
       init()
     })
 
+    const scrollTop = () => {
+      ScrollToElem('.container', 500, -65)
+    }
+
     return {
       state,
-      changeContent,
-      MDfileWithType: computed(() => {
-        return state.lists
-      }),
       initMD: computed(() => {
-        return state.content
-      })
+        return state.item
+      }),
+      scrollTop
     }
   }
 })
@@ -69,31 +61,29 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .container {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
   margin: 10px;
-  min-height: 670px;
-  .sidebar {
-    margin-top: 54px;
-    width: 25%;
-  }
-  .content {
-    margin-left: 10px;
-    margin-top: 54px;
-
-    width: 75%;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
-    background: #f8f9fa;
-  }
 }
 
-@media screen and (max-width: 900px) {
-  .container .sidebar {
-    display: none;
-  }
-  .container .content {
-    width: 100%;
-  }
+.btn-scroll-top {
+  display: block;
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 2.625rem;
+  height: 2.625rem;
+  transition: transform 0.25s ease-in-out, opacity 0.25s,
+    background-color 0.25s ease-in-out;
+  transform: scale(0);
+  border-radius: 50%;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  z-index: 1025;
+}
+
+.btn-scroll-top.show {
+  opacity: 1;
+  transform: scale(1.001);
 }
 </style>

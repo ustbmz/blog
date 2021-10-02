@@ -11,12 +11,12 @@ export const BlogService = () => {
     isEnd: false,
     isRepeat: false,
     isTop: 0,
-    content: '' as any,
     status: '',
     sort: '',
     page: 0,
     limit: 20,
-    lists: [{} as MDInfo]
+    lists: [{} as MDInfo],
+    titlelist: [] as any
   })
 
   const handleGetlist = async () => {
@@ -44,8 +44,8 @@ export const BlogService = () => {
         } else {
           state.lists = state.lists.concat(res.data)
         }
-        store.commit('setMDInfo', state.lists)
-        store.commit('setContent', state.lists[0].content)
+        store.commit('setMDList', state.lists)
+        store.commit('setMDitem', state.lists[0])
         store.commit('setContentName', state.lists[0].title)
       }
     } catch (error) {
