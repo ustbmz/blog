@@ -121,10 +121,10 @@ $primary-color: #02d199;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   background: #fff;
+  color: #666;
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   z-index: 2;
-
   .title-name {
     text-align: center;
     font-size: 24px;
@@ -147,7 +147,9 @@ $primary-color: #02d199;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     &.active {
       background: #04aa6d;
-      color: #fff;
+      a {
+        color: #fff !important;
+      }
       box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
     }
     .nav-link {
@@ -163,13 +165,15 @@ $primary-color: #02d199;
       align-items: center;
       flex-flow: row nowrap;
       text-overflow: ellipsis;
-      font-size: 14px;
+      font-size: 15px;
       line-height: 30px;
       height: 30px;
       transition: rgb(117, 86, 86) 0.3s;
       &.active {
-        background: #b2ddcc;
-        color: #fff;
+        background: #04aa6d;
+        a {
+          color: #fff !important;
+        }
         box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
       }
       .nav-link {
@@ -192,7 +196,6 @@ $primary-color: #02d199;
       justify-content: center;
       align-items: center;
       font-size: 12px;
-      color: #666;
     }
   }
 }
