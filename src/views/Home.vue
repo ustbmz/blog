@@ -8,7 +8,10 @@
   <my-footer></my-footer>
   <a class="btn-scroll-top show" @click="scrollTop">
     <span class="btn-scroll-top-tooltip text-muted fs-sm me-2"></span>
-    <i class="btn-scroll-top-icon ci-angle-up"></i>
+    <i
+      class="layui-icon layui-icon-up"
+      style="font-size: 26px; color: #fff;"
+    ></i>
   </a>
 </template>
 
@@ -77,7 +80,7 @@ export default defineComponent({
     background-color 0.25s ease-in-out;
   transform: scale(0);
   border-radius: 50%;
-  background-color: #007bff;
+  background-color: #04aa6d;
   color: #fff;
   text-align: center;
   opacity: 0;

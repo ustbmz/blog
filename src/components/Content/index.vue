@@ -103,7 +103,6 @@ export default defineComponent({
     margin-top: 54px;
     padding-bottom: 254px;
     width: 407px;
-    overflow-y: scroll;
   }
   .content {
     margin-left: 417px;
