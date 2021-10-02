@@ -1,6 +1,9 @@
 <template>
   <div class="navbar">
     <ul class="item">
+      <i class="layui-icon layui-icon-face-smile home-icon" @click="goIndex">
+        <span>MyProject</span>
+      </i>
       <li
         v-for="item in lists"
         :key="'item' + item.name"
@@ -16,6 +19,7 @@
 
 <script>
 import { defineComponent, reactive, toRefs } from 'vue'
+import router from '../../router/index'
 
 export default defineComponent({
   name: 'navbar',
@@ -55,8 +59,13 @@ export default defineComponent({
       emit('update:catalog', state.catalog)
     }
 
+    const goIndex = () => {
+      router.push('/project')
+    }
+
     return {
       change,
+      goIndex,
       ...toRefs(state)
     }
   }
@@ -64,13 +73,34 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/_variables.scss';
+
+.home-icon {
+  position: absolute;
+  left: 15px;
+  font-size: 30px;
+  color: #1e9fff;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-size: 16px;
+    color: #fff;
+    margin-left: 10px;
+    align-items: center;
+  }
+}
 .navbar {
+  cursor: pointer;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 2;
   font-size: 17px;
-  background-color: #282a35;
+  background-color: rgb(55, 56, 78);
+
   color: #f1f1f1;
   width: 100%;
   padding: 0;
@@ -82,7 +112,7 @@ export default defineComponent({
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 

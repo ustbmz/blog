@@ -1,14 +1,30 @@
 <template>
   <div>
     <div class="sider">
-      <div class="title-name">{{ catalog }}</div>
-      <div class="layui-row pd1 text-center mouseCuosr">
-        <div class="layui-col-md6 brr">
-          <a class="" @click="changeShowFlag(true)">目录</a>
-        </div>
-        <div class="layui-col-md6 text-center">
-          <a class="" @click="changeShowFlag(false)">书签</a>
-        </div>
+      <div class="title-name titile-active">{{ catalog }}</div>
+      <div class=" pd1 text-center  select">
+        <ul>
+          <li
+            @click="changeShowFlag(true)"
+            :class="{ activeItem: state.showFlag === true }"
+          >
+            <i
+              class="layui-icon layui-icon-list"
+              style="font-size: 26px; color: #04aa6d;"
+            ></i>
+            目录
+          </li>
+          <li
+            @click="changeShowFlag(false)"
+            :class="{ activeItem: state.showFlag === false }"
+          >
+            <i
+              class="layui-icon layui-icon-list"
+              style="font-size: 26px; color: #04aa6d;"
+            ></i>
+            书签
+          </li>
+        </ul>
       </div>
       <ul class="nav flex-column" v-show="state.showFlag">
         <li
@@ -99,9 +115,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+$primary-color: #02d199;
 .sider {
   min-height: 670px;
-  min-width: 300px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   background: #fff;
@@ -113,6 +129,11 @@ export default defineComponent({
     text-align: center;
     font-size: 24px;
     line-height: 64px;
+  }
+  .titile-active {
+    color: $primary-color;
+    position: relative;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
   }
 
   .nav-item {
@@ -134,13 +155,17 @@ export default defineComponent({
     }
   }
   .titlelist {
+    cursor: pointer;
+    list-style: decimal;
     .titlelist-item {
       display: flex;
       justify-content: flex-start;
       align-items: center;
       flex-flow: row nowrap;
       text-overflow: ellipsis;
-      height: 40px;
+      font-size: 14px;
+      line-height: 30px;
+      height: 30px;
       transition: rgb(117, 86, 86) 0.3s;
       &.active {
         background: #b2ddcc;
@@ -154,11 +179,36 @@ export default defineComponent({
   }
 }
 
-.brr {
-  border-right: 1px solid #04aa6d;
+.select {
+  ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    li {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: #666;
+    }
+  }
 }
 
-.mouseCuosr {
-  cursor: pointer;
+.activeItem {
+  color: $primary-color;
+  position: relative;
+  &:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    width: 88px;
+    height: 2px;
+    background: $primary-color;
+    bottom: 0px;
+    right: -22px;
+  }
 }
 </style>

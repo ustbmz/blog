@@ -101,16 +101,15 @@ export default defineComponent({
   .sidebar {
     position: fixed;
     margin-top: 54px;
-    padding-bottom: 254px;
-    width: 407px;
+    width: 360px;
   }
   .content {
-    margin-left: 417px;
+    margin-left: 380px;
     margin-top: 54px;
     min-height: 754px;
     width: 75%;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
-    background: #f8f9fa;
+    background: #fff;
   }
 }
 .titleBar {
@@ -122,7 +121,9 @@ export default defineComponent({
   background: rgb(223, 50, 50);
   width: 350px;
   min-height: 600px;
-  color: rgb(248, 245, 245);
+  a {
+    color: rgb(248, 245, 245);
+  }
   z-index: 999;
 }
 .title-list {
@@ -135,7 +136,7 @@ export default defineComponent({
   opacity: 1;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1100px) {
   .container .sidebar {
     display: none;
   }

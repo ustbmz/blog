@@ -3,15 +3,14 @@
 </template>
 
 <style lang="scss">
-$item-bg: #04aa6d;
-
+@import '@/assets/styles/_variables.scss';
 body {
   font-family: Verdana, sans-serif;
   font-size: 15px;
   line-height: 1.5;
   margin: 0;
   padding: 0;
-  background: #e9ecef;
+  background: #f7f7fc;
 }
 ul,
 li {
@@ -20,9 +19,9 @@ li {
   list-style: none;
 }
 
-a {
+a .body {
   text-decoration: none;
-  color: #343a40;
+  color: #fff;
 }
 
 @for $i from 0 to 5 {

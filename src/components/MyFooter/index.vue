@@ -1,6 +1,15 @@
 <template>
-  <div class="footer"></div>
-  <div class="bt-footer">©2021 ustbmz. All rights reserved</div>
+  <div class="footer">
+    <!-- <div class="links">
+      <ul>
+        <li>友情链接1</li>
+        <li>友情链接2</li>
+        <li>友情链接3</li>
+        <li>友情链接4</li>
+      </ul>
+    </div> -->
+    <div class="bt-footer"><p>©2021 ustbmz. All rights reserved</p></div>
+  </div>
 </template>
 
 <script>
@@ -14,15 +23,36 @@ export default {
   position: relative;
   width: 100%;
   height: 170px;
-  bottom: 0;
-  background-color: #1e212c;
+  background-color: rgb(55, 56, 78);
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  color: #fff;
+
+  .links {
+    margin-top: 50px;
+    height: 120px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 .bt-footer {
+  color: rgba(255, 255, 255, 0.5);
   position: relative;
-  height: 60px;
-  background-color: #1e212c;
-  color: #fff;
-  line-height: 60px;
-  text-align: center;
+  height: 100px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875em;
+  p {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  line-height: 30px;
 }
 </style>
