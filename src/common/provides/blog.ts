@@ -19,8 +19,8 @@ export const BlogService = () => {
     titlelist: [] as any
   })
 
-  const handleGetlist = async () => {
-    console.log('handleGetlist state.title:' + state.title)
+  const handleGetList = async () => {
+    console.log('handleGetList state.title:' + state.title)
     // if (state.isRepeat) return
     // if (state.isEnd) return
     state.isRepeat = true
@@ -52,23 +52,22 @@ export const BlogService = () => {
       console.log('list Service catch errinfo:' + error)
     }
   }
-
   const init = () => {
     state.page = 0
     state.lists = []
     state.isEnd = false
     state.isRepeat = false
-    handleGetlist()
+    handleGetList()
   }
 
   const nextPage = () => {
     state.page++
-    handleGetlist()
+    handleGetList()
   }
 
   return {
     state,
-    handleGetlist,
+    handleGetList,
     nextPage,
     init
   }

@@ -9,7 +9,7 @@
             :class="{ activeItem: state.showFlag === true }"
           >
             <i
-              class="layui-icon layui-icon-list"
+              class="layui-icon layui-icon-templeate-1"
               style="font-size: 26px; color: #04aa6d;"
             ></i>
             目录
@@ -19,7 +19,7 @@
             :class="{ activeItem: state.showFlag === false }"
           >
             <i
-              class="layui-icon layui-icon-cols"
+              class="layui-icon layui-icon-list"
               style="font-size: 26px; color: #04aa6d;"
             ></i>
             书签
@@ -39,20 +39,27 @@
           </a>
         </li>
       </ul>
-      <ul class="nav flex-column titlelist" v-show="!state.showFlag">
-        <li
-          class="titlelist-item"
-          v-for="item in titlelist"
-          :key="'item' + item.index"
-          @click="handleAnchorClick(item)"
-          :class="{ active: state.clickname === item.title }"
-          :style="{ padding: `0 0 0 ${item.indent * 20}px` }"
-        >
-          <a class="nav-link">
-            {{ item.title }}
-          </a>
-        </li>
-      </ul>
+      <Suspense>
+        <template #default>
+          <ul class="nav flex-column titlelist" v-show="!state.showFlag">
+            <li
+              class="titlelist-item"
+              v-for="item in titlelist"
+              :key="'item' + item.index"
+              @click="handleAnchorClick(item)"
+              :class="{ active: state.clickname === item.title }"
+              :style="{ padding: `0 0 0 ${item.indent * 20}px` }"
+            >
+              <a class="nav-link">
+                {{ item.title }}
+              </a>
+            </li>
+          </ul>
+        </template>
+        <template #fallback>
+          Loading...
+        </template>
+      </Suspense>
     </div>
   </div>
 </template>
@@ -129,14 +136,15 @@ $primary-color: #02d199;
     text-align: center;
     font-size: 24px;
     line-height: 64px;
+    color: rgba(43, 42, 42, 0.5);
   }
   .titile-active {
-    color: $primary-color;
     position: relative;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
   }
 
   .nav-item {
+    cursor: pointer;
     display: flex;
     justify-content: flex-start;
     align-items: center;

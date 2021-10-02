@@ -9,7 +9,7 @@
   <a class="btn-scroll-top show" @click="scrollTop">
     <span class="btn-scroll-top-tooltip text-muted fs-sm me-2"></span>
     <i
-      class="layui-icon layui-icon-up"
+      class="layui-icon layui-icon-top"
       style="font-size: 26px; color: #fff;"
     ></i>
   </a>
@@ -37,7 +37,7 @@ export default defineComponent({
     onMounted(() => {
       console.log('List vue onMounted')
       state.title = 'html'
-      // handleGetlist()
+      // handleGetList()
     })
 
     const current = toRef(state, 'title')
