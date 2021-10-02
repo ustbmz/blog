@@ -29,19 +29,21 @@ export default defineComponent({
     'my-footer': MyFooter
   },
   setup () {
-    const { state, handleGetlist, init } = BlogService()
+    const { state, init } = BlogService()
 
     onMounted(() => {
       console.log('List vue onMounted')
       state.title = 'html'
-      handleGetlist()
+      // handleGetlist()
     })
 
     const current = toRef(state, 'title')
     watch(current, (newval, oldval) => {
-      console.log('🚀 ~ file: Home.vue ~ line 60 ~ watch ~ oldval', oldval)
-      store.commit('setTitle', newval)
-      init()
+      if (newval !== oldval && oldval !== '' && oldval !== undefined) {
+        console.log('🚀 ~ file: Home.vue ~ line 60 ~ watch ~ oldval', oldval)
+        store.commit('setTitle', newval)
+        init()
+      }
     })
 
     const scrollTop = () => {

@@ -23,7 +23,7 @@
           </a>
         </li>
       </ul>
-      <ul class="nav flex-column" v-show="!state.showFlag">
+      <ul class="nav flex-column titlelist" v-show="!state.showFlag">
         <li
           class="titlelist-item"
           v-for="item in titlelist"
@@ -133,21 +133,23 @@ export default defineComponent({
       padding: 10px;
     }
   }
-  .titlelist-item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-flow: row nowrap;
-    text-overflow: ellipsis;
-    height: 40px;
-    transition: rgb(117, 86, 86) 0.3s;
-    &.active {
-      background: #b2ddcc;
-      color: #fff;
-      box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
-    }
-    .nav-link {
-      padding: 10px;
+  .titlelist {
+    .titlelist-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-flow: row nowrap;
+      text-overflow: ellipsis;
+      height: 40px;
+      transition: rgb(117, 86, 86) 0.3s;
+      &.active {
+        background: #b2ddcc;
+        color: #fff;
+        box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+      }
+      .nav-link {
+        padding: 10px;
+      }
     }
   }
 }
