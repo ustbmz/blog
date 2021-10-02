@@ -19,7 +19,7 @@
             :class="{ activeItem: state.showFlag === false }"
           >
             <i
-              class="layui-icon layui-icon-list"
+              class="layui-icon layui-icon-cols"
               style="font-size: 26px; color: #04aa6d;"
             ></i>
             书签
