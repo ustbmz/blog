@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        Version: 1.0
+    image: blog:1.0
+    container_name: blog
+    restart: always
+    # env_file: .env
+    volumes:
+      - /home/blog/:/app/dist
+    ports:
+      - '9080:80'
+
+networks:
+  default:
+    external:
+      name: https
