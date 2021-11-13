@@ -6,11 +6,11 @@
     </div>
   </div>
   <my-footer></my-footer>
-  <a class="btn-scroll-top show" @click="scrollTop">
+  <a class="btn-scroll-top show" @click="scrollTop" v-show="!isHover">
     <span class="btn-scroll-top-tooltip text-muted fs-sm me-2"></span>
     <i
       class="layui-icon layui-icon-top"
-      style="font-size: 26px; color: #fff;"
+      style="font-size: 36px; color: #fff;"
     ></i>
   </a>
 </template>
@@ -58,6 +58,9 @@ export default defineComponent({
       initMD: computed(() => {
         return state.item
       }),
+      isHover: computed(() => {
+        return store.state.isHover
+      }),
       scrollTop
     }
   }
@@ -80,7 +83,7 @@ export default defineComponent({
     background-color 0.25s ease-in-out;
   transform: scale(0);
   border-radius: 50%;
-  background-color: #04aa6d;
+  background-color: rgb(114, 151, 75);
   color: #fff;
   text-align: center;
   opacity: 0;

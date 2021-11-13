@@ -10,7 +10,7 @@
           >
             <i
               class="layui-icon layui-icon-templeate-1"
-              style="font-size: 26px; color: #04aa6d;"
+              style="font-size: 26px; color: rgb(114, 151, 75);"
             ></i>
             目录
           </li>
@@ -20,7 +20,7 @@
           >
             <i
               class="layui-icon layui-icon-list"
-              style="font-size: 26px; color: #04aa6d;"
+              style="font-size: 26px; color: rgb(114, 151, 75);"
             ></i>
             书签
           </li>
@@ -122,7 +122,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$primary-color: #02d199;
+$primary-color: rgb(114, 151, 75);
 .sider {
   min-height: 670px;
   -webkit-transition: all 0.2s;
@@ -154,7 +154,7 @@ $primary-color: #02d199;
     transition: #fff 0.3s;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     &.active {
-      background: #04aa6d;
+      background: rgb(114, 151, 75);
       a {
         color: #fff !important;
       }
@@ -178,7 +178,7 @@ $primary-color: #02d199;
       height: 30px;
       transition: rgb(117, 86, 86) 0.3s;
       &.active {
-        background: #04aa6d;
+        background: rgb(114, 151, 75);
         a {
           color: #fff !important;
         }
