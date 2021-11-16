@@ -3,7 +3,7 @@
     <i class="layui-icon layui-icon-face-smile home-icon" @click="togglePro()">
       <span>MyProject</span>
     </i>
-    <ul class="item" :class="{ showItem: isHover }">
+    <ul class="item">
       <li
         v-for="item in lists"
         :key="'item' + item.name"
@@ -14,37 +14,19 @@
         {{ item.name }}
       </li>
     </ul>
-    <ul class="item" :class="{ showItem: !isHover }">
-      <li
-        v-for="item in projects"
-        :key="'item' + item.name"
-        :class="{ avtive: catalog === item.name }"
-        @click="changeProject(item.index)"
-      >
-        {{ item.name }}
-      </li>
-    </ul>
   </div>
-  <div class="projects" :class="{ showdiv: isHover }" @mouseleave="hide()">
-    <span class="pj-name">{{ projects[showIndex].name }}</span>
-    <div class="bbs" v-show="showIndex === 0">
-      <div class="contractions">
-        <img src="@/assets/bbs.png" />
-        <img src="@/assets/bbs.png" />
-        <img src="@/assets/bbs.png" />
-        <img src="@/assets/bbs.png" />
-        <img src="@/assets/bbs.png" />
-      </div>
-      <img src="@/assets/bbs.png" />
+  <!-- <div class="projects" @mouseleave="hide()">
+    <div class="contractions" v-for="item in projects" :key="item.index">
+      <img :src="item.pic" />
+      <div>item.name</div>
+      <div>item.github</div>
+      <div>item.demo</div>
     </div>
-    <div class="bbs2" v-show="showIndex === 1"></div>
-    <div class="webapp" v-show="showIndex === 2"></div>
-    <div class="admin" v-show="showIndex === 3"></div>
-  </div>
+  </div> -->
 </template>
 
 <script>
-import { defineComponent, reactive, toRefs, computed, Onmounted } from 'vue'
+import { defineComponent, reactive, toRefs, computed } from 'vue'
 import store from '@/store'
 export default defineComponent({
   name: 'navbar',
@@ -214,55 +196,25 @@ export default defineComponent({
 
 .projects {
   display: none;
-  opacity: 1;
-  position: absolute;
-  background: #fff;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  top: 65px;
-  left: 10px;
-  width: 99%;
-  height: 80%;
-  z-index: 9998;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  align-items: center;
-
-  .bbs {
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    .contractions {
-      box-shadow: 0;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: space-around;
-      width: 15%;
-      height: 80%;
-      overflow: hidden;
-      margin-left: 20px;
-      img {
-        border: 1px solid rgb(114, 151, 75);
-        width: 50%;
-        height: auto;
-        margin: 0 auto;
-      }
-    }
-
-    img {
-      height: 80%;
-      margin: 15px;
-    }
-  }
-}
-.showdiv {
+  width: 90%;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 70px;
   display: flex;
-}
-.showItem {
-  display: none;
+  flex-flow: row nowrap;
+  justify-content: center;
+  text-align: center;
+
+  .contractions {
+    display: flex;
+    flex-flow: columns nowrap;
+    justify-content: center;
+    height: 100%;
+    margin: 20px;
+  }
+  span {
+    display: inline-block;
+  }
 }
 </style>
