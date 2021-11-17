@@ -35,6 +35,8 @@
 <script>
 import { defineComponent, reactive, toRefs, computed } from 'vue'
 import store from '@/store'
+import { ScrollToElem } from '@/utils/common.js'
+
 export default defineComponent({
   name: 'navbar',
   props: {
@@ -125,10 +127,15 @@ export default defineComponent({
 
     const togglePro = () => {
       state.isShow = !state.isShow
+      ScrollToNavBar()
     }
 
     const changeProject = val => {
       state.showIndex = val
+    }
+
+    const ScrollToNavBar = () => {
+      ScrollToElem('.navbar', 500, -465)
     }
 
     return {
@@ -140,6 +147,7 @@ export default defineComponent({
         return store.state.isHover
       }),
       changeProject,
+      ScrollToNavBar,
       ...toRefs(state)
     }
   }
