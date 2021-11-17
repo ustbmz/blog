@@ -7,11 +7,7 @@
   </div>
   <my-footer></my-footer>
   <a class="btn-scroll-top show" @click="scrollTop" v-show="!isHover">
-    <span class="btn-scroll-top-tooltip text-muted fs-sm me-2"></span>
-    <i
-      class="layui-icon layui-icon-top"
-      style="font-size: 36px; color: #fff;"
-    ></i>
+    <i class="iconfont icon-huidingbu" style="font-size: 36px;"></i>
   </a>
 </template>
 
@@ -75,16 +71,14 @@ export default defineComponent({
 .btn-scroll-top {
   display: block;
   position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
+  right: 1.5rem;
+  bottom: 1.5rem;
   width: 2.625rem;
   height: 2.625rem;
   transition: transform 0.25s ease-in-out, opacity 0.25s,
     background-color 0.25s ease-in-out;
   transform: scale(0);
-  border-radius: 50%;
-  background-color: rgb(114, 151, 75);
-  color: #fff;
+  color: rgb(216, 83, 83);
   text-align: center;
   opacity: 0;
   z-index: 1025;

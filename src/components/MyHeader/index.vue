@@ -15,14 +15,21 @@
       </li>
     </ul>
   </div>
-  <!-- <div class="projects" @mouseleave="hide()">
-    <div class="contractions" v-for="item in projects" :key="item.index">
-      <img :src="item.pic" />
-      <div>item.name</div>
-      <div>item.github</div>
-      <div>item.demo</div>
+  <div class="projectlist" v-show="isShow">
+    <div class="project-item" v-for="item in projects" :key="item.index">
+      <img :src="item.img" />
+      <span class="title">{{ item.name }}</span>
+      <span>{{ item.text }}</span>
+      <span>
+        <a :href="item.github" class="link-str" target="_blank">
+          <i class="iconfont icon-github iconBig"></i>Github
+        </a>
+        <a :href="item.demo" class="link-str" target="_blank">
+          <i class="iconfont icon-wangzhi-copy iconBig"></i>Demo
+        </a>
+      </span>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <script>
@@ -39,6 +46,7 @@ export default defineComponent({
   setup (props, { emit }) {
     const state = reactive({
       catalog: 'Html',
+      isShow: false,
       hoverContral: '',
       showIndex: 0,
       projects: [
@@ -46,25 +54,33 @@ export default defineComponent({
           index: 0,
           name: 'BBS 论坛',
           github: 'https://github.com/ustbmz/front',
-          demo: 'http://bbs.ustbmz.com/'
+          text: 'Vue2 + layui + webpack 实现BBS论坛项目 实现自动化构建部署打包',
+          demo: 'https://bbs.ustbmz.com/',
+          img: require('@/assets/vue.png')
         },
         {
           index: 1,
           name: 'BBS 论坛(Vue3)',
-          github: 'https://github.com/ustbmz/front-v3',
-          demo: 'http://v3.ustbmz.com/'
+          github: 'https://github.com/ustbmz/front-vue3',
+          text: 'Vue3 + TS BBS重构BBS论坛项目',
+          demo: 'https://v3bbs.ustbmz.com/',
+          img: require('@/assets/vue3.png')
         },
         {
           index: 2,
           name: 'webapp H5移动端',
           github: 'https://github.com/ustbmz/webapp',
-          demo: 'http://webapp.ustbmz.com/'
+          text: 'BBS H5移动端应用，使用 mpvue + mint-ui 框架',
+          demo: 'https://webapp.ustbmz.com/',
+          img: require('@/assets/vant.png')
         },
         {
           index: 3,
           name: 'admin 后台系统',
           github: 'https://github.com/ustbmz/admin',
-          demo: 'http://admin.ustbmz.com/'
+          text: '全栈项目 bbs 后端管理系统 使用 vue + ivew-admin 集成框架',
+          demo: 'https://admin.ustbmz.com/',
+          img: require('@/assets/ivew.png')
         }
       ],
       lists: [
@@ -108,10 +124,7 @@ export default defineComponent({
     }
 
     const togglePro = () => {
-      clearTimeout(state.hoverContral)
-      state.hoverContral = setTimeout(() => {
-        store.commit('setIsHover', !store.state.isHover)
-      }, 200)
+      state.isShow = !state.isShow
     }
 
     const changeProject = val => {
@@ -135,6 +148,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '@/assets/styles/_variables.scss';
+@import '~@/assets/icon/iconfont.css';
 
 .home-icon {
   position: absolute;
@@ -194,27 +208,49 @@ export default defineComponent({
   background: rgb(114, 151, 75);
 }
 
-.projects {
-  display: none;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  width: 90%;
-  height: 200px;
-  margin: 0 auto;
-  margin-top: 70px;
+.projectlist {
+  box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  height: 390px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  text-align: center;
 
-  .contractions {
+  .project-item {
     display: flex;
-    flex-flow: columns nowrap;
-    justify-content: center;
-    height: 100%;
+    background: #fff;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    height: 70%;
+    width: 20%;
     margin: 20px;
+    margin-top: 90px;
+
+    span {
+      width: 80%;
+      font-size: 10px;
+      margin-top: 5px;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .title {
+      font-weight: 600;
+      text-align: center;
+    }
+    .iconBig {
+      font-size: 24px;
+      color: #04aa6d;
+      margin: 0 4px;
+    }
+    .link-str {
+      color: #666;
+    }
   }
-  span {
-    display: inline-block;
+
+  img {
+    border-radius: 12px 12px 0 0;
   }
 }
 </style>
