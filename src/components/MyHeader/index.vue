@@ -17,17 +17,19 @@
   </div>
   <div class="projectlist" v-show="isShow">
     <div class="project-item" v-for="item in projects" :key="item.index">
-      <img :src="item.img" />
+      <img class="card" :src="item.img" />
       <span class="title">{{ item.name }}</span>
       <span>{{ item.text }}</span>
-      <span>
-        <a :href="item.github" class="link-str" target="_blank">
-          <i class="iconfont icon-github iconBig"></i>Github
+      <div class="icon-git">
+        <a :href="item.github" target="_blank">
+          <i class="iconfont icon-github iconBig"></i>
+          <span class="link-str">Github</span>
         </a>
-        <a :href="item.demo" class="link-str" target="_blank">
-          <i class="iconfont icon-wangzhi-copy iconBig"></i>Demo
+        <a :href="item.demo" target="_blank">
+          <i class="iconfont icon-wangzhi-copy iconBig"></i>
+          <span class="link-str">Demo</span>
         </a>
-      </span>
+      </div>
     </div>
   </div>
 </template>
@@ -35,7 +37,6 @@
 <script>
 import { defineComponent, reactive, toRefs, computed } from 'vue'
 import store from '@/store'
-import { ScrollToElem } from '@/utils/common.js'
 
 export default defineComponent({
   name: 'navbar',
@@ -135,7 +136,7 @@ export default defineComponent({
     }
 
     const ScrollToNavBar = () => {
-      ScrollToElem('.navbar', 500, -465)
+      document.scrollTop = document.documentElement.scrollTop = 0
     }
 
     return {
@@ -236,6 +237,28 @@ export default defineComponent({
     margin: 20px;
     margin-top: 90px;
 
+    .icon-git {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 40px;
+
+      .iconBig {
+        font-size: 24px;
+        color: #04aa6d;
+        margin: 0 8px;
+        height: 100%;
+        align-items: center;
+      }
+
+      .link-str {
+        align-items: center;
+        height: 100%;
+        color: #666;
+        vertical-align: middle;
+      }
+    }
+
     span {
       width: 80%;
       font-size: 10px;
@@ -246,14 +269,6 @@ export default defineComponent({
     .title {
       font-weight: 600;
       text-align: center;
-    }
-    .iconBig {
-      font-size: 24px;
-      color: #04aa6d;
-      margin: 0 4px;
-    }
-    .link-str {
-      color: #666;
     }
   }
 

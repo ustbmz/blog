@@ -3,6 +3,7 @@
     <div class="sider">
       <div class="title-name titile-active">{{ catalog }}</div>
       <div class=" pd1 text-center  select">
+        <a @click="getPostion()">当前窗口位置 :{{ state.positionObj }}</a>
         <ul>
           <li
             @click="changeShowFlag(true)"
@@ -75,11 +76,32 @@ export default defineComponent({
   setup (props, { emit }) {
     const state = reactive({
       showFlag: true,
-      clickname: '' as any
+      clickname: '' as any,
+      positionObj: {}
     })
 
     const changeShowFlag = (val: boolean) => {
       state.showFlag = val
+    }
+    function getPostion () {
+      let t, l, w, h
+      if (document.documentElement && document.documentElement.scrollTop) {
+        t = document.documentElement.scrollTop
+        l = document.documentElement.scrollLeft
+        w = document.documentElement.scrollWidth
+        h = document.documentElement.scrollHeight
+      } else if (document.body) {
+        t = document.body.scrollTop
+        l = document.body.scrollLeft
+        w = document.body.scrollWidth
+        h = document.body.scrollHeight
+      }
+      state.positionObj = {
+        top: t,
+        left: l,
+        width: w,
+        height: h
+      }
     }
     const changeContent = (item: MDInfo) => {
       ScrollToElem('.container', 500, -65)
@@ -110,6 +132,7 @@ export default defineComponent({
         return store.state.mdlists
       }),
       changeContent,
+      getPostion,
       catalog: computed(() => {
         return store.state.title.toUpperCase()
       }),

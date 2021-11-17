@@ -9,14 +9,14 @@
         @handleAnchorClick="handleAnchorClick"
       ></my-sidebar>
     </div>
-    <div class="content">
+    <div class="content" id="content">
       <v-md-preview :text="text" ref="preview"></v-md-preview>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, onMounted, watch } from 'vue'
 import store from '@/store'
 import Sidebar from '@/components/Sidebar/index.vue'
 import { BlogService } from '@/common/provides/blog'
@@ -27,6 +27,7 @@ export default defineComponent({
   },
   setup () {
     const { state } = BlogService()
+
     const preview = ref(null)
 
     const changeContent = item => {
@@ -72,6 +73,38 @@ export default defineComponent({
       }
     }
 
+    onMounted(() => {
+      console.log('')
+    })
+
+    watch(
+      () => {
+        return document.documentElement.scrollTop
+      },
+      (oldval, newval) => {
+        console.log(oldval, newval)
+        state.position = newval
+        // const io = new IntersectionObserver(
+        //   entries => {
+        //     entries.forEach(i => {
+        //       console.log('Time: ' + i.time)
+        //       console.log('Target: ' + i.target)
+        //       console.log('Target: ' + i.target.innerHTML)
+        //       console.log('IntersectionRatio: ' + i.intersectionRatio)
+        //       console.log('rootBounds: ' + i.rootBounds)
+        //       console.log(i.boundingClientRect)
+        //       console.log(i.intersectionRect)
+        //       console.log('================')
+        //     })
+        //   },
+        //   {
+        //     /* Using default options. Details below */
+        //   }
+        // )
+        // io.observe(document.querySelector('#content'))
+      }
+    )
+
     return {
       state,
       preview,
@@ -84,6 +117,9 @@ export default defineComponent({
       }),
       titlelist: computed(() => {
         return getTitles()
+      }),
+      myPostion: computed(() => {
+        return document.documentElement.scrollTop
       }),
       handleAnchorClick
     }
