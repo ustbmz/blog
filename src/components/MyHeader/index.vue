@@ -15,7 +15,7 @@
       </li>
     </ul>
   </div>
-  <div class="projectlist" v-show="isShow">
+  <div class="projectlist" :class="{ showAni: isShow }">
     <div class="project-item" v-for="item in projects" :key="item.index">
       <img class="card" :src="item.img" />
       <span class="title">{{ item.name }}</span>
@@ -75,7 +75,7 @@ export default defineComponent({
           github: 'https://github.com/ustbmz/webapp',
           text: 'BBS H5移动端应用，使用 mpvue + mint-ui 框架',
           demo: 'https://webapp.ustbmz.com/',
-          img: require('@/assets/vant.png')
+          img: require('@/assets/mint.png')
         },
         {
           index: 3,
@@ -128,6 +128,7 @@ export default defineComponent({
 
     const togglePro = () => {
       state.isShow = !state.isShow
+      console.log(state.isShow)
       ScrollToNavBar()
     }
 
@@ -218,30 +219,43 @@ export default defineComponent({
 }
 
 .projectlist {
-  box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 55px;
+  left: -120%; /* test fixed + scroll, on retire la position top */
   width: 100%;
-  height: 390px;
+  height: 340px;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: center;
+  z-index: 99;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+    rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px,
+    rgba(240, 46, 170, 0.05) 25px 25px;
+  opacity: 0.9;
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+
+  &.showAni {
+    left: -20px;
+  }
 
   .project-item {
     display: flex;
-    background: #fff;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
-    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     flex-flow: column nowrap;
     justify-content: space-between;
-    height: 70%;
+    border-radius: 8px;
+    height: 80%;
     width: 20%;
-    margin: 20px;
-    margin-top: 90px;
+    margin: 30px 25px;
 
     .icon-git {
       display: flex;
       justify-content: center;
       align-items: center;
-      line-height: 40px;
 
       .iconBig {
         font-size: 24px;
@@ -252,10 +266,11 @@ export default defineComponent({
       }
 
       .link-str {
+        line-height: 40px;
+        margin-right: 20px;
         align-items: center;
         height: 100%;
-        color: #666;
-        vertical-align: middle;
+        color: #333;
       }
     }
 
@@ -273,7 +288,9 @@ export default defineComponent({
   }
 
   img {
-    border-radius: 12px 12px 0 0;
+    border: 1px solid rgba(182, 108, 108, 0.01);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px 8px 0 0;
   }
 }
 </style>
