@@ -29,37 +29,29 @@
       <ul class="nav flex-column" v-show="state.showFlag">
         <li
           class="nav-item"
-          v-for="item in lists"
-          :key="'item' + item.index"
+          v-for="(item, index) in lists"
+          :key="'item' + index"
           :class="{ active: contentName === item.title }"
           @click="changeContent(item)"
+        >
+          <a class="nav-link"> {{ item.title }} </a>
+          <span class="nav-time">{{ moment(item.created) }}</span>
+        </li>
+      </ul>
+      <ul class="nav flex-column titlelist" v-show="!state.showFlag">
+        <li
+          class="titlelist-item"
+          v-for="item in titlelist"
+          :key="'item' + item.index"
+          @click="handleAnchorClick(item)"
+          :class="{ active: state.clickname === item.title }"
+          :style="{ padding: `0 0 0 ${item.indent * 20}px` }"
         >
           <a class="nav-link">
             {{ item.title }}
           </a>
         </li>
       </ul>
-      <Suspense>
-        <template #default>
-          <ul class="nav flex-column titlelist" v-show="!state.showFlag">
-            <li
-              class="titlelist-item"
-              v-for="item in titlelist"
-              :key="'item' + item.index"
-              @click="handleAnchorClick(item)"
-              :class="{ active: state.clickname === item.title }"
-              :style="{ padding: `0 0 0 ${item.indent * 20}px` }"
-            >
-              <a class="nav-link">
-                {{ item.title }}
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template #fallback>
-          Loading...
-        </template>
-      </Suspense>
     </div>
   </div>
 </template>
@@ -69,6 +61,7 @@ import { MDInfo } from '@/common/interface'
 import store from '@/store'
 import { defineComponent, computed, reactive, watch, onMounted } from 'vue'
 import { ScrollToElem } from '@/utils/common.js'
+import { moment } from '@/utils/memont'
 
 export default defineComponent({
   props: ['titlelist'],
@@ -117,7 +110,7 @@ export default defineComponent({
       if (fromBottom < 200 && !state.bottomHeight) {
         state.bottomHeight = true
       }
-      if (fromBottom > 400 && state.bottomHeight) {
+      if ((fromBottom > 400 && state.bottomHeight) || docScrollTop < 400) {
         state.bottomHeight = false
       }
     }
@@ -139,6 +132,7 @@ export default defineComponent({
 
     return {
       state,
+      moment,
       changeShowFlag,
       handleAnchorClick,
       lists: computed(() => {
@@ -185,10 +179,12 @@ $primary-color: rgb(114, 151, 75);
   .nav-item {
     cursor: pointer;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+    padding: 10px;
     flex-flow: row nowrap;
     text-overflow: ellipsis;
+    font-size: 18px;
     min-height: 60px;
     transition: #fff 0.3s;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
@@ -199,8 +195,11 @@ $primary-color: rgb(114, 151, 75);
       }
       box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
     }
-    .nav-link {
-      padding: 10px;
+    .nav-time {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #666;
+      line-height: 12px;
     }
   }
   .titlelist {
@@ -208,11 +207,12 @@ $primary-color: rgb(114, 151, 75);
     list-style: decimal;
     .titlelist-item {
       display: flex;
+      line-height: 1;
       justify-content: flex-start;
       align-items: center;
       flex-flow: row nowrap;
       text-overflow: ellipsis;
-      font-size: 15px;
+      font-size: 14px;
       min-height: 30px;
       transition: rgb(117, 86, 86) 0.3s;
       &.active {
