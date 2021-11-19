@@ -6,7 +6,7 @@
     </div>
   </div>
   <my-footer></my-footer>
-  <a class="btn-scroll-top show" @click="scrollTop" v-show="!isHover">
+  <a class="btn-scroll-top show" @click="scrollTop" v-show="topFlag">
     <i class="iconfont icon-huidingbu" style="font-size: 36px;"></i>
   </a>
 </template>
@@ -54,8 +54,8 @@ export default defineComponent({
       initMD: computed(() => {
         return state.item
       }),
-      isHover: computed(() => {
-        return store.state.isHover
+      topFlag: computed(() => {
+        return store.state.topFlag
       }),
       scrollTop
     }

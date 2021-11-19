@@ -129,15 +129,10 @@ export default defineComponent({
     const togglePro = () => {
       state.isShow = !state.isShow
       console.log(state.isShow)
-      ScrollToNavBar()
     }
 
     const changeProject = val => {
       state.showIndex = val
-    }
-
-    const ScrollToNavBar = () => {
-      document.scrollTop = document.documentElement.scrollTop = 0
     }
 
     return {
@@ -149,7 +144,6 @@ export default defineComponent({
         return store.state.isHover
       }),
       changeProject,
-      ScrollToNavBar,
       ...toRefs(state)
     }
   }
@@ -219,7 +213,7 @@ export default defineComponent({
 }
 
 .projectlist {
-  position: absolute;
+  position: fixed;
   top: 55px;
   left: -120%; /* test fixed + scroll, on retire la position top */
   width: 100%;

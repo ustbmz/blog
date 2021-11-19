@@ -22,7 +22,6 @@ export default {
 .footer {
   position: relative;
   width: 100%;
-  height: 170px;
   background-color: rgb(55, 56, 78);
   display: flex;
   flex-flow: column;

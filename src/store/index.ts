@@ -9,7 +9,7 @@ export default createStore({
     mdlists: {} as MDInfo,
     mditem: {} as MDInfo,
     contentname: '' as string,
-    isHover: false as boolean
+    topFlag: false as boolean
   },
   mutations: {
     setTitle (state, value) {
@@ -31,8 +31,8 @@ export default createStore({
     setMDitem (state, value: MDInfo) {
       state.mditem = value
     },
-    setIsHover (state, value: boolean) {
-      state.isHover = value
+    setTopFlag (state, value: boolean) {
+      state.topFlag = value
     }
   },
   actions: {},

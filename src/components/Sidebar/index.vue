@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div class="sider">
+    <div class="sider" :class="{ bottomHeight: state.bottomHeight }">
       <div class="title-name titile-active">{{ catalog }}</div>
       <div class=" pd1 text-center  select">
-        <a @click="getPostion()">当前窗口位置 :{{ state.positionObj }}</a>
         <ul>
           <li
             @click="changeShowFlag(true)"
@@ -68,7 +67,7 @@
 <script lang="ts">
 import { MDInfo } from '@/common/interface'
 import store from '@/store'
-import { defineComponent, computed, reactive, watch } from 'vue'
+import { defineComponent, computed, reactive, watch, onMounted } from 'vue'
 import { ScrollToElem } from '@/utils/common.js'
 
 export default defineComponent({
@@ -77,31 +76,11 @@ export default defineComponent({
     const state = reactive({
       showFlag: true,
       clickname: '' as any,
-      positionObj: {}
+      bottomHeight: false as boolean
     })
 
     const changeShowFlag = (val: boolean) => {
       state.showFlag = val
-    }
-    function getPostion () {
-      let t, l, w, h
-      if (document.documentElement && document.documentElement.scrollTop) {
-        t = document.documentElement.scrollTop
-        l = document.documentElement.scrollLeft
-        w = document.documentElement.scrollWidth
-        h = document.documentElement.scrollHeight
-      } else if (document.body) {
-        t = document.body.scrollTop
-        l = document.body.scrollLeft
-        w = document.body.scrollWidth
-        h = document.body.scrollHeight
-      }
-      state.positionObj = {
-        top: t,
-        left: l,
-        width: w,
-        height: h
-      }
     }
     const changeContent = (item: MDInfo) => {
       ScrollToElem('.container', 500, -65)
@@ -111,6 +90,36 @@ export default defineComponent({
     const handleAnchorClick = (item: any) => {
       state.clickname = item.title
       emit('handleAnchorClick', item)
+    }
+
+    const onScroll = () => {
+      const docScrollTop =
+        document.documentElement && document.documentElement.scrollTop
+      console.log(docScrollTop, '高度')
+      if (docScrollTop > 1000 && !store.state.topFlag) {
+        setTimeout(() => {
+          store.commit('setTopFlag', true)
+        }, 2000)
+      }
+      if (docScrollTop < 1000 && store.state.topFlag) {
+        setTimeout(() => {
+          store.commit('setTopFlag', false)
+        }, 2000)
+      }
+      const docClientHeight =
+        document.body.clientHeight && document.documentElement.clientHeight
+      console.log(docClientHeight, '页面高度')
+      const docScrollHeight = document.body.scrollHeight
+      // console.log(this.docScrollHeight, '文档实际高度')
+      const fromBottom = docScrollHeight - docScrollTop - docClientHeight
+      console.log(fromBottom, '距离底部的高度')
+
+      if (fromBottom < 200 && !state.bottomHeight) {
+        state.bottomHeight = true
+      }
+      if (fromBottom > 400 && state.bottomHeight) {
+        state.bottomHeight = false
+      }
     }
 
     watch(
@@ -124,6 +133,10 @@ export default defineComponent({
       }
     )
 
+    onMounted(() => {
+      window.addEventListener('scroll', onScroll, false)
+    })
+
     return {
       state,
       changeShowFlag,
@@ -132,7 +145,6 @@ export default defineComponent({
         return store.state.mdlists
       }),
       changeContent,
-      getPostion,
       catalog: computed(() => {
         return store.state.title.toUpperCase()
       }),
@@ -147,14 +159,18 @@ export default defineComponent({
 <style lang="scss" scoped>
 $primary-color: rgb(114, 151, 75);
 .sider {
-  min-height: 670px;
+  height: 670px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   background: #fff;
+  overflow-y: scroll;
   color: #666;
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   z-index: 2;
+  &.bottomHeight {
+    height: 540px;
+  }
   .title-name {
     text-align: center;
     font-size: 24px;
@@ -173,7 +189,7 @@ $primary-color: rgb(114, 151, 75);
     align-items: center;
     flex-flow: row nowrap;
     text-overflow: ellipsis;
-    height: 60px;
+    min-height: 60px;
     transition: #fff 0.3s;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     &.active {
@@ -197,8 +213,7 @@ $primary-color: rgb(114, 151, 75);
       flex-flow: row nowrap;
       text-overflow: ellipsis;
       font-size: 15px;
-      line-height: 30px;
-      height: 30px;
+      min-height: 30px;
       transition: rgb(117, 86, 86) 0.3s;
       &.active {
         background: rgb(114, 151, 75);
