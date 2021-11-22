@@ -8,21 +8,15 @@
             @click="changeShowFlag(true)"
             :class="{ activeItem: showFlag === true }"
           >
-            <i
-              class="iconfont icon-fenleimulu"
-              style="font-size: 26px; color: rgb(114, 151, 75);"
-            ></i>
-            目录
+            <i class="iconfont icon-fenleimulu" style="font-size: 22px;"></i>
+            <span class="ml1">目录</span>
           </li>
           <li
             @click="changeShowFlag(false)"
             :class="{ activeItem: showFlag === false }"
           >
-            <i
-              class="iconfont icon-shuqian-"
-              style="font-size: 26px; color: rgb(114, 151, 75);"
-            ></i>
-            书签
+            <i class="iconfont icon-shuqian1" style="font-size: 22px;"></i>
+            <span class="ml1">书签</span>
           </li>
         </ul>
       </div>
@@ -284,11 +278,12 @@ $primary-color: rgb(114, 151, 75);
     position: absolute;
     display: inline-block;
     content: '';
-    width: 68px;
-    height: 2px;
+    width: 20px;
+    height: 4px;
     background: $primary-color;
     bottom: 0px;
-    right: -14px;
+    right: 2px;
+    opacity: 0.4;
   }
 }
 

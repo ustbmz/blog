@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "9455630",
+      "name": "书签",
+      "font_class": "fenzu",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "12095317",
+      "name": "书签",
+      "font_class": "shuqian",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "19738995",
+      "name": "书签",
+      "font_class": "shuqian1",
+      "unicode": "f196",
+      "unicode_decimal": 61846
+    },
+    {
       "icon_id": "3741825",
       "name": "书签",
       "font_class": "shuqian-",
