@@ -225,9 +225,9 @@ export default defineComponent({
   z-index: 99;
   border-radius: 4px;
   background-color: #fff;
-  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
-    rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px,
-    rgba(240, 46, 170, 0.05) 25px 25px;
+  box-shadow: rgba(29, 32, 26, 0.4) 5px 5px, rgba(44, 54, 48, 0.3) 10px 10px,
+    rgba(62, 73, 65, 0.2) 15px 15px, rgba(58, 63, 60, 0.1) 20px 20px,
+    rgba(52, 58, 55, 0.05) 25px 25px;
   opacity: 0.96;
   -webkit-transition: all 0.5s ease-in;
   -moz-transition: all 0.5s ease-in;
