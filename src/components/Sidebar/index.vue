@@ -9,7 +9,7 @@
             :class="{ activeItem: showFlag === true }"
           >
             <i
-              class="layui-icon layui-icon-templeate-1"
+              class="iconfont icon-fenleimulu"
               style="font-size: 26px; color: rgb(114, 151, 75);"
             ></i>
             目录
@@ -19,7 +19,7 @@
             :class="{ activeItem: showFlag === false }"
           >
             <i
-              class="layui-icon layui-icon-list"
+              class="iconfont icon-shuqian-"
               style="font-size: 26px; color: rgb(114, 151, 75);"
             ></i>
             书签
@@ -196,7 +196,7 @@ $primary-color: rgb(114, 151, 75);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   z-index: 2;
   &.bottomHeight {
-    height: 540px;
+    height: 500px;
   }
   .title-name {
     text-align: center;
@@ -284,11 +284,11 @@ $primary-color: rgb(114, 151, 75);
     position: absolute;
     display: inline-block;
     content: '';
-    width: 88px;
+    width: 68px;
     height: 2px;
     background: $primary-color;
     bottom: 0px;
-    right: -22px;
+    right: -14px;
   }
 }
 
