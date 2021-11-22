@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
-    <i class="layui-icon layui-icon-face-smile home-icon" @click="togglePro()">
-      <span>MyProject</span>
+    <i class="iconfont icon-hacker home-icon" @click="togglePro()">
+      <span style="font-size:10px">一个钱端</span>
     </i>
     <ul class="item">
       <li
@@ -158,8 +158,8 @@ export default defineComponent({
 .home-icon {
   position: absolute;
   left: 15px;
-  font-size: 30px;
-  color: #04aa6d;
+  font-size: 24px;
+  color: #72974b;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -216,7 +216,7 @@ export default defineComponent({
 .projectlist {
   position: fixed;
   top: 55px;
-  left: -120%; /* test fixed + scroll, on retire la position top */
+  left: -101%; /* test fixed + scroll, on retire la position top */
   width: 100%;
   height: 340px;
   display: flex;

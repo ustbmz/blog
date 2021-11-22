@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3741825",
+      "name": "书签",
+      "font_class": "shuqian-",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "3823797",
+      "name": "目录",
+      "font_class": "mulu",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "6594238",
+      "name": "分类目录",
+      "font_class": "fenleimulu",
+      "unicode": "e6a1",
+      "unicode_decimal": 59041
+    },
+    {
+      "icon_id": "7548883",
+      "name": "24gl-bookmarks2",
+      "font_class": "24gl-bookmarks2",
+      "unicode": "e8ad",
+      "unicode_decimal": 59565
+    },
+    {
+      "icon_id": "11983412",
+      "name": "hacker",
+      "font_class": "hacker",
+      "unicode": "e9f2",
+      "unicode_decimal": 59890
+    },
+    {
       "icon_id": "3266887",
       "name": "顶部",
       "font_class": "dingbu",

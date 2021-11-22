@@ -7,7 +7,7 @@
   </div>
   <my-footer></my-footer>
   <a class="btn-scroll-top show" @click="scrollTop" v-show="topFlag">
-    <i class="iconfont icon-huidingbu" style="font-size: 36px;"></i>
+    <i class="iconfont icon-dingbu" style="font-size: 36px;"></i>
   </a>
 </template>
 
@@ -78,7 +78,7 @@ export default defineComponent({
   transition: transform 0.25s ease-in-out, opacity 0.25s,
     background-color 0.25s ease-in-out;
   transform: scale(0);
-  color: rgb(216, 83, 83);
+  color: #72974b;
   text-align: center;
   opacity: 0;
   z-index: 1025;
