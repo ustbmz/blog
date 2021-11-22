@@ -110,6 +110,7 @@ export default defineComponent({
     const change = item => {
       // eslint-disable-next-line vue/no-mutating-props
       state.catalog = item.name
+      store.commit('setShowFlag', true)
       emit('update:catalog', state.catalog)
     }
 

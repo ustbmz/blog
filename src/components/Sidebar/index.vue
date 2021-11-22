@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="sider" :class="{ bottomHeight: state.bottomHeight }">
+    <div class="sider" :class="{ bottomHeight: bottomHeight }">
       <div class="title-name titile-active">{{ catalog }}</div>
       <div class=" pd1 text-center  select">
         <ul>
           <li
             @click="changeShowFlag(true)"
-            :class="{ activeItem: state.showFlag === true }"
+            :class="{ activeItem: showFlag === true }"
           >
             <i
               class="layui-icon layui-icon-templeate-1"
@@ -16,7 +16,7 @@
           </li>
           <li
             @click="changeShowFlag(false)"
-            :class="{ activeItem: state.showFlag === false }"
+            :class="{ activeItem: showFlag === false }"
           >
             <i
               class="layui-icon layui-icon-list"
@@ -26,7 +26,7 @@
           </li>
         </ul>
       </div>
-      <ul class="nav flex-column" v-show="state.showFlag">
+      <ul class="nav flex-column" v-show="showFlag">
         <li
           class="nav-item"
           v-for="(item, index) in lists"
@@ -38,13 +38,18 @@
           <span class="nav-time">{{ moment(item.created) }}</span>
         </li>
       </ul>
-      <ul class="nav flex-column titlelist" v-show="!state.showFlag">
+      <ul id="titleList" class="nav flex-column titlelist" v-show="!showFlag">
         <li
           class="titlelist-item"
-          v-for="item in titlelist"
-          :key="'item' + item.index"
+          v-for="(item, index) in itemTitleList"
+          :key="'item' + index"
           @click="handleAnchorClick(item)"
-          :class="{ active: state.clickname === item.title }"
+          :class="{
+            scrollActive:
+              itemTitleList.length > 1 &&
+              scrollHeight > item.offsetHeight &&
+              scrollHeight < itemTitleList[index + 1].offsetHeight
+          }"
           :style="{ padding: `0 0 0 ${item.indent * 20}px` }"
         >
           <a class="nav-link">
@@ -56,10 +61,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { MDInfo } from '@/common/interface'
+<script>
 import store from '@/store'
-import { defineComponent, computed, reactive, watch, onMounted } from 'vue'
+import {
+  defineComponent,
+  computed,
+  reactive,
+  watch,
+  onMounted,
+  toRefs
+} from 'vue'
 import { ScrollToElem } from '@/utils/common.js'
 import { moment } from '@/utils/memont'
 
@@ -67,20 +78,24 @@ export default defineComponent({
   props: ['titlelist'],
   setup (props, { emit }) {
     const state = reactive({
-      showFlag: true,
-      clickname: '' as any,
-      bottomHeight: false as boolean
+      clickname: '',
+      bottomHeight: false,
+      scrollHeight: 0
     })
 
-    const changeShowFlag = (val: boolean) => {
-      state.showFlag = val
+    const itemTitleList = computed(() => {
+      return props.titlelist
+    })
+
+    const changeShowFlag = val => {
+      store.commit('setShowFlag', val)
     }
-    const changeContent = (item: MDInfo) => {
+    const changeContent = item => {
       ScrollToElem('.container', 500, -65)
       store.commit('setMDitem', item)
       store.commit('setContentName', item.title)
     }
-    const handleAnchorClick = (item: any) => {
+    const handleAnchorClick = item => {
       state.clickname = item.title
       emit('handleAnchorClick', item)
     }
@@ -89,6 +104,9 @@ export default defineComponent({
       const docScrollTop =
         document.documentElement && document.documentElement.scrollTop
       console.log(docScrollTop, '高度')
+
+      state.scrollHeight = docScrollTop + 200
+
       if (docScrollTop > 1000 && !store.state.topFlag) {
         setTimeout(() => {
           store.commit('setTopFlag', true)
@@ -102,6 +120,7 @@ export default defineComponent({
       const docClientHeight =
         document.body.clientHeight && document.documentElement.clientHeight
       console.log(docClientHeight, '页面高度')
+
       const docScrollHeight = document.body.scrollHeight
       // console.log(this.docScrollHeight, '文档实际高度')
       const fromBottom = docScrollHeight - docScrollTop - docClientHeight
@@ -117,12 +136,22 @@ export default defineComponent({
 
     watch(
       () => {
-        return store.state.contentname
+        return state.scrollHeight
       },
       (newval, oldval) => {
         console.log('🚀 ~ file: index.vue ~ line 72 ~ setup ~ oldval', oldval)
         console.log('🚀 ~ file: index.vue ~ line 72 ~ setup ~ newval', newval)
-        state.showFlag = true
+        if (!store.state.showFlag) {
+          const el = document.querySelector('.scrollActive')
+          console.log('el', el)
+          if (el && el !== undefined && el !== null) {
+            el.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+              inline: 'nearest'
+            })
+          }
+        }
       }
     )
 
@@ -131,8 +160,9 @@ export default defineComponent({
     })
 
     return {
-      state,
+      ...toRefs(state),
       moment,
+      itemTitleList,
       changeShowFlag,
       handleAnchorClick,
       lists: computed(() => {
@@ -144,6 +174,9 @@ export default defineComponent({
       }),
       contentName: computed(() => {
         return store.state.contentname
+      }),
+      showFlag: computed(() => {
+        return store.state.showFlag
       })
     }
   }
@@ -215,7 +248,7 @@ $primary-color: rgb(114, 151, 75);
       font-size: 14px;
       min-height: 30px;
       transition: rgb(117, 86, 86) 0.3s;
-      &.active {
+      &.scrollActive {
         background: rgb(114, 151, 75);
         a {
           color: #fff !important;

@@ -2,9 +2,9 @@
   <div class="main">
     <div class="sidebar">
       <my-sidebar
-        :list="state.lists"
+        :list="lists"
         :titlelist="titlelist"
-        v-model:item="state.title"
+        v-model:item="title"
         @handleItem="changeContent"
         @handleAnchorClick="handleAnchorClick"
       ></my-sidebar>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { computed, defineComponent, ref, onMounted, watch } from 'vue'
+import { computed, defineComponent, ref, onMounted, toRefs } from 'vue'
 import store from '@/store'
 import Sidebar from '@/components/Sidebar/index.vue'
 import { BlogService } from '@/common/provides/blog'
@@ -48,13 +48,25 @@ export default defineComponent({
           new Set(state.titlelist.map(title => title.tagName))
         ).sort()
 
-        state.titlelist = state.titlelist.map(el => ({
-          title: el.innerText,
-          lineIndex: el.getAttribute('data-v-md-line'),
-          indent: hTags.indexOf(el.tagName)
-        }))
+        state.titlelist = state.titlelist.map(el => {
+          return {
+            title: el.innerText,
+            lineIndex: el.getAttribute('data-v-md-line'),
+            indent: hTags.indexOf(el.tagName),
+            offsetHeight: el.offsetHeight + gETop(el)
+          }
+        })
       }, 3000)
       return state.titlelist
+    }
+
+    const gETop = x => {
+      var t = 0
+      while (x) {
+        t += x.offsetTop
+        x = x.offsetParent
+      }
+      return t
     }
 
     const handleAnchorClick = anchor => {
@@ -77,36 +89,8 @@ export default defineComponent({
       console.log('')
     })
 
-    watch(
-      () => {
-        return document.documentElement.scrollTop
-      },
-      (oldval, newval) => {
-        console.log(oldval, newval)
-        state.position = newval
-        // const io = new IntersectionObserver(
-        //   entries => {
-        //     entries.forEach(i => {
-        //       console.log('Time: ' + i.time)
-        //       console.log('Target: ' + i.target)
-        //       console.log('Target: ' + i.target.innerHTML)
-        //       console.log('IntersectionRatio: ' + i.intersectionRatio)
-        //       console.log('rootBounds: ' + i.rootBounds)
-        //       console.log(i.boundingClientRect)
-        //       console.log(i.intersectionRect)
-        //       console.log('================')
-        //     })
-        //   },
-        //   {
-        //     /* Using default options. Details below */
-        //   }
-        // )
-        // io.observe(document.querySelector('#content'))
-      }
-    )
-
     return {
-      state,
+      ...toRefs(state),
       preview,
       changeContent,
       text: computed(() => {

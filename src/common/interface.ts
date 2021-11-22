@@ -6,6 +6,12 @@ export interface MDInfo {
   content?: any
   created?: string
 }
+export interface MDTitlelist {
+  title: string
+  lineIndex: string
+  indent: string
+  offsetHeight: number
+}
 
 export interface HttpResponse {
   code: number
