@@ -34,7 +34,7 @@
           :class="{ active: contentName === item.title }"
           @click="changeContent(item)"
         >
-          <a class="nav-link"> {{ item.title }} </a>
+          <a class="nav-link"> {{ index + 1 }} {{ item.title }} </a>
           <span class="nav-time">{{ moment(item.created) }}</span>
         </li>
       </ul>
@@ -184,7 +184,7 @@ $primary-color: rgb(114, 151, 75);
     padding: 10px;
     flex-flow: row nowrap;
     text-overflow: ellipsis;
-    font-size: 18px;
+    font-size: 16px;
     min-height: 60px;
     transition: #fff 0.3s;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
