@@ -218,14 +218,13 @@ $primary-color: rgb(114, 151, 75);
     flex-flow: row nowrap;
     text-overflow: ellipsis;
     font-size: 16px;
-    min-height: 60px;
+    min-height: 50px;
     transition: #fff 0.3s;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     &.active {
-      background: rgb(114, 151, 75);
-      a {
-        color: #fff !important;
-      }
+      background: rgb(210, 236, 184);
+      opacity: 0.8;
+      border-left: 2px solid rgb(114, 151, 75);
       box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
     }
     .nav-time {
@@ -249,10 +248,9 @@ $primary-color: rgb(114, 151, 75);
       min-height: 30px;
       transition: rgb(117, 86, 86) 0.3s;
       &.scrollActive {
-        background: rgb(114, 151, 75);
-        a {
-          color: #fff !important;
-        }
+        background: rgb(210, 236, 184);
+        opacity: 0.8;
+        border-left: 2px solid rgb(114, 151, 75);
         box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
       }
       .nav-link {
@@ -292,5 +290,24 @@ $primary-color: rgb(114, 151, 75);
     bottom: 0px;
     right: -22px;
   }
+}
+
+::-webkit-scrollbar-track-piece {
+  //滚动条凹槽的颜色，还可以设置边框属性
+  background-color: #f8f8f8;
+}
+::-webkit-scrollbar {
+  //滚动条的宽度
+  width: 0px;
+  height: 9px;
+}
+::-webkit-scrollbar-thumb {
+  //滚动条的设置
+  background-color: #dddddd;
+  background-clip: padding-box;
+  min-height: 28px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #bbb;
 }
 </style>
