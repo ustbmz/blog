@@ -29,7 +29,7 @@ export default {
   color: #fff;
 
   .links {
-    margin-top: 50px;
+    margin-top: 60px;
     height: 120px;
     display: flex;
     flex-flow: row nowrap;
@@ -40,7 +40,7 @@ export default {
 .bt-footer {
   color: rgba(255, 255, 255, 0.5);
   position: relative;
-  height: 100px;
+  height: 180px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
