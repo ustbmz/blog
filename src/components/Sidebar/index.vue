@@ -200,10 +200,10 @@ $primary-color: #000000;
 
   .nav {
     padding-top: 10px;
-    padding-left: 10px;
   }
 
   .nav-item {
+    padding-left: 10px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -215,9 +215,13 @@ $primary-color: #000000;
     transition: #fff 0.3s;
     // box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     &.active {
-      background: rgb(169, 170, 167);
+      background: linear-gradient(
+        to right,
+        rgb(255, 255, 255),
+        rgb(238, 239, 240)
+      ); /* 标准的语法 */
       opacity: 0.8;
-      border-right: 1px solid #000000;
+      border-right: 2px solid #000000;
     }
     .nav-time {
       width: 16%;
@@ -242,7 +246,11 @@ $primary-color: #000000;
       min-height: 30px;
       transition: rgb(117, 86, 86) 0.3s;
       &.scrollActive {
-        background: rgb(212, 214, 211);
+        background: linear-gradient(
+          to right,
+          rgb(255, 255, 255),
+          rgb(238, 239, 240)
+        );
         opacity: 0.8;
         border-right: 2px solid #000000;
       }

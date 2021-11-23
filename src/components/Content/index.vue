@@ -9,7 +9,7 @@
         @handleAnchorClick="handleAnchorClick"
       ></my-sidebar>
     </div>
-    <div class="content" id="content">
+    <div class="content topline" id="content">
       <v-md-preview :text="text" ref="preview"></v-md-preview>
     </div>
   </div>
@@ -125,10 +125,24 @@ export default defineComponent({
   }
   .content {
     margin-left: 380px;
-    margin-top: 103px;
+    margin-top: 110px;
     min-height: 754px;
-    width: 72%;
+    width: 70%;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  }
+}
+.topline {
+  position: relative;
+  &:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    width: 68px;
+    height: 1px;
+    background: #000000;
+    top: -5px;
+    left: 0px;
+    opacity: 0.4;
   }
 }
 .titleBar {

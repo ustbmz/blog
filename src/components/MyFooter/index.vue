@@ -40,7 +40,7 @@ export default {
 .bt-footer {
   color: rgba(255, 255, 255, 0.5);
   position: relative;
-  height: 180px;
+  height: 168px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
