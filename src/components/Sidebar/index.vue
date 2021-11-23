@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="sider" :class="{ bottomHeight: bottomHeight }">
-      <div class="title-name titile-active">{{ catalog }}</div>
-      <div class=" pd1 text-center  select">
+      <div class="title-name tipline">{{ catalog }}</div>
+      <div class="select">
         <ul>
           <li
             @click="changeShowFlag(true)"
@@ -178,16 +178,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$primary-color: rgb(114, 151, 75);
+$primary-color: #000000;
 .sider {
   height: 670px;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
   background: #fff;
   overflow-y: scroll;
   color: #666;
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   z-index: 2;
   &.bottomHeight {
     height: 500px;
@@ -196,11 +194,13 @@ $primary-color: rgb(114, 151, 75);
     text-align: center;
     font-size: 24px;
     line-height: 64px;
-    color: rgba(43, 42, 42, 0.5);
+    color: #fff;
+    background-color: #000;
   }
-  .titile-active {
-    position: relative;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+
+  .nav {
+    padding-top: 10px;
+    padding-left: 10px;
   }
 
   .nav-item {
@@ -208,21 +208,21 @@ $primary-color: rgb(114, 151, 75);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
     flex-flow: row nowrap;
     text-overflow: ellipsis;
     font-size: 16px;
     min-height: 50px;
     transition: #fff 0.3s;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+    // box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     &.active {
-      background: rgb(210, 236, 184);
+      background: rgb(169, 170, 167);
       opacity: 0.8;
-      border-left: 2px solid rgb(114, 151, 75);
-      box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+      border-right: 1px solid #000000;
     }
     .nav-time {
+      width: 16%;
       margin-top: 6px;
+      padding-right: 4px;
       font-size: 12px;
       color: #666;
       line-height: 12px;
@@ -242,10 +242,9 @@ $primary-color: rgb(114, 151, 75);
       min-height: 30px;
       transition: rgb(117, 86, 86) 0.3s;
       &.scrollActive {
-        background: rgb(210, 236, 184);
+        background: rgb(212, 214, 211);
         opacity: 0.8;
-        border-left: 2px solid rgb(114, 151, 75);
-        box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+        border-right: 2px solid #000000;
       }
       .nav-link {
         padding: 10px;
@@ -261,7 +260,9 @@ $primary-color: rgb(114, 151, 75);
     justify-content: space-around;
     align-items: center;
     cursor: pointer;
+    height: 60px;
     li {
+      width: 50%;
       display: flex;
       flex-flow: row nowrap;
       justify-content: center;
@@ -274,6 +275,8 @@ $primary-color: rgb(114, 151, 75);
 .activeItem {
   color: $primary-color;
   position: relative;
+  width: 50%;
+  border-bottom: 1px solid $primary-color;
   &:after {
     position: absolute;
     display: inline-block;
@@ -282,7 +285,7 @@ $primary-color: rgb(114, 151, 75);
     height: 4px;
     background: $primary-color;
     bottom: 0px;
-    right: 2px;
+    right: 0px;
     opacity: 0.4;
   }
 }

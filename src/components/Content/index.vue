@@ -120,16 +120,15 @@ export default defineComponent({
 
   .sidebar {
     position: fixed;
-    margin-top: 54px;
+    margin-top: 103px;
     width: 360px;
   }
   .content {
     margin-left: 380px;
-    margin-top: 54px;
+    margin-top: 103px;
     min-height: 754px;
-    width: 75%;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
-    background: #fff;
+    width: 72%;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
   }
 }
 .titleBar {

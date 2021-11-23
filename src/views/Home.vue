@@ -65,7 +65,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .container {
-  margin: 10px;
+  background-color: #ffffff;
 }
 
 .btn-scroll-top {
@@ -78,7 +78,7 @@ export default defineComponent({
   transition: transform 0.25s ease-in-out, opacity 0.25s,
     background-color 0.25s ease-in-out;
   transform: scale(0);
-  color: #72974b;
+  color: #000000;
   text-align: center;
   opacity: 0;
   z-index: 1025;

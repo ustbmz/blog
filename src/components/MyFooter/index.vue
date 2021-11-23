@@ -22,7 +22,7 @@ export default {
 .footer {
   position: relative;
   width: 100%;
-  background-color: rgb(55, 56, 78);
+  background-color: #111111;
   display: flex;
   flex-flow: column;
   justify-content: flex-end;

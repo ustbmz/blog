@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <i class="iconfont icon-hacker home-icon" @click="togglePro()">
-      <span style="font-size:10px">一个钱端</span>
+      <span>一个钱端</span>
     </i>
     <ul class="item">
       <li
@@ -159,15 +159,14 @@ export default defineComponent({
   position: absolute;
   left: 15px;
   font-size: 24px;
-  color: #72974b;
+  color: #000000;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
 
   span {
-    font-size: 16px;
-    color: #fff;
+    font-size: 26px;
     margin-left: 10px;
     align-items: center;
   }
@@ -178,63 +177,66 @@ export default defineComponent({
   top: 0;
   width: 100%;
   z-index: 2;
-  font-size: 17px;
-  background-color: rgb(55, 56, 78);
+  font-size: 16px;
+  background-color: #fff;
+  opacity: 0.96;
 
-  color: #f1f1f1;
+  color: #000000;
   width: 100%;
   padding: 0;
   letter-spacing: 1px;
   font-family: 'Source Sans Pro', sans-serif;
-  height: 54px;
-  line-height: 54px;
+  height: 83px;
+  line-height: 83px;
   overflow: hidden;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: baseline;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0.2 rgba(0, 0, 0, 0.15);
 }
 
 .item {
+  margin-top: 20px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   line-height: 50px;
-  margin: 2px;
 
   li {
     padding: 0 20px;
   }
-}
 
-.avtive {
-  background: rgb(114, 151, 75);
+  .avtive {
+    opacity: 1;
+    border-bottom: 1px solid #000000;
+  }
 }
 
 .projectlist {
+  border-top: 1px solid #000000;
   position: fixed;
-  top: 55px;
-  left: -101%; /* test fixed + scroll, on retire la position top */
+  top: 90px;
+  left: -100%; /* test fixed + scroll, on retire la position top */
   width: 100%;
   height: 340px;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   z-index: 99;
-  border-radius: 4px;
   background-color: #fff;
-  box-shadow: rgba(29, 32, 26, 0.4) 5px 5px, rgba(44, 54, 48, 0.3) 10px 10px,
-    rgba(62, 73, 65, 0.2) 15px 15px, rgba(58, 63, 60, 0.1) 20px 20px,
-    rgba(52, 58, 55, 0.05) 25px 25px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  // box-shadow: rgba(29, 32, 26, 0.4) 5px 5px, rgba(44, 54, 48, 0.3) 10px 10px,
+  //   rgba(62, 73, 65, 0.2) 15px 15px, rgba(58, 63, 60, 0.1) 20px 20px,
+  //   rgba(52, 58, 55, 0.05) 25px 25px;
   opacity: 0.96;
   -webkit-transition: all 0.5s ease-in;
   -moz-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
 
   &.showAni {
-    left: -20px;
+    left: -10px;
   }
 
   .project-item {
@@ -254,7 +256,7 @@ export default defineComponent({
 
       .iconBig {
         font-size: 24px;
-        color: #04aa6d;
+        color: #000000;
         margin: 0 8px;
         height: 100%;
         align-items: center;
