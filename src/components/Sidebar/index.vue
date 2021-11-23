@@ -40,7 +40,7 @@
           @click="handleAnchorClick(item)"
           :class="{
             scrollActive:
-              itemTitleList.length > 1 &&
+              itemTitleList.length > 2 &&
               scrollHeight > item.offsetHeight &&
               scrollHeight < itemTitleList[index + 1].offsetHeight
           }"
