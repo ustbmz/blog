@@ -205,7 +205,7 @@ export default defineComponent({
   line-height: 50px;
 
   li {
-    padding: 0 20px;
+    margin: 0 20px;
   }
 
   .avtive {
