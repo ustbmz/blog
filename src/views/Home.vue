@@ -5,7 +5,7 @@
       <my-content :content="initMD"></my-content>
     </div>
   </div>
-  <my-footer></my-footer>
+  <!-- <my-footer></my-footer> -->
   <a class="btn-scroll-top show" @click="scrollTop" v-show="topFlag">
     <i class="iconfont icon-dingbu" style="font-size: 36px;"></i>
   </a>
@@ -16,7 +16,7 @@ import { ScrollToElem } from '@/utils/common.js'
 import { computed, defineComponent, onMounted, toRef, watch } from 'vue'
 import MyHeader from '@/components/MyHeader/index.vue'
 import Content from '@/components/Content/index.vue'
-import MyFooter from '@/components/MyFooter/index.vue'
+// import MyFooter from '@/components/MyFooter/index.vue'
 import { BlogService } from '@/common/provides/blog'
 import store from '@/store'
 
@@ -24,8 +24,8 @@ export default defineComponent({
   name: 'Home',
   components: {
     'my-header': MyHeader,
-    'my-content': Content,
-    'my-footer': MyFooter
+    'my-content': Content
+    // 'my-footer': MyFooter
   },
   setup () {
     const { state, init } = BlogService()
@@ -54,9 +54,7 @@ export default defineComponent({
       initMD: computed(() => {
         return state.item
       }),
-      topFlag: computed(() => {
-        return store.state.topFlag
-      }),
+      topFlag: true,
       scrollTop
     }
   }

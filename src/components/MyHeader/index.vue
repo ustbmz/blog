@@ -158,7 +158,7 @@ export default defineComponent({
 .home-icon {
   position: absolute;
   left: 15px;
-  font-size: 24px;
+  font-size: 16px;
   color: #000000;
   display: flex;
   flex-flow: row nowrap;
@@ -166,9 +166,10 @@ export default defineComponent({
   align-items: center;
 
   span {
-    font-size: 26px;
+    font-size: 16px;
     margin-left: 10px;
     align-items: center;
+    letter-spacing: 2px;
   }
 }
 .navbar {

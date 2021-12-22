@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="sider" :class="{ bottomHeight: bottomHeight }">
+    <div class="sider">
       <div class="title-name tipline">{{ catalog }}</div>
       <div class="select">
         <ul>
@@ -73,7 +73,6 @@ export default defineComponent({
   setup (props, { emit }) {
     const state = reactive({
       clickname: '',
-      bottomHeight: false,
       scrollHeight: 0
     })
 
@@ -98,34 +97,26 @@ export default defineComponent({
       const docScrollTop =
         document.documentElement && document.documentElement.scrollTop
       console.log(docScrollTop, '高度')
-
       state.scrollHeight = docScrollTop + 200
 
-      if (docScrollTop > 1000 && !store.state.topFlag) {
-        setTimeout(() => {
-          store.commit('setTopFlag', true)
-        }, 2000)
-      }
-      if (docScrollTop < 1000 && store.state.topFlag) {
-        setTimeout(() => {
-          store.commit('setTopFlag', false)
-        }, 2000)
-      }
-      const docClientHeight =
-        document.body.clientHeight && document.documentElement.clientHeight
-      console.log(docClientHeight, '页面高度')
+      // if (docScrollTop > 1000 && !store.state.topFlag) {
+      //   setTimeout(() => {
+      //     store.commit('setTopFlag', true)
+      //   }, 2000)
+      // }
+      // if (docScrollTop < 1000 && store.state.topFlag) {
+      //   setTimeout(() => {
+      //     store.commit('setTopFlag', false)
+      //   }, 2000)
+      // }
+      // const docClientHeight =
+      //   document.body.clientHeight && document.documentElement.clientHeight
+      // console.log(docClientHeight, '页面高度')
 
-      const docScrollHeight = document.body.scrollHeight
-      // console.log(this.docScrollHeight, '文档实际高度')
-      const fromBottom = docScrollHeight - docScrollTop - docClientHeight
-      console.log(fromBottom, '距离底部的高度')
-
-      if (fromBottom < 200 && !state.bottomHeight) {
-        state.bottomHeight = true
-      }
-      if ((fromBottom > 400 && state.bottomHeight) || docScrollTop < 400) {
-        state.bottomHeight = false
-      }
+      // const docScrollHeight = document.body.scrollHeight
+      // // console.log(this.docScrollHeight, '文档实际高度')
+      // const fromBottom = docScrollHeight - docScrollTop - docClientHeight
+      // console.log(fromBottom, '距离底部的高度')
     }
 
     watch(
@@ -187,9 +178,6 @@ $primary-color: #000000;
   overflow-y: scroll;
   color: #666;
   z-index: 2;
-  &.bottomHeight {
-    height: 500px;
-  }
   .title-name {
     text-align: center;
     font-size: 24px;

@@ -20,7 +20,8 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
-  position: relative;
+  position: static;
+  top: 100vh;
   width: 100%;
   background-color: #111111;
   display: flex;
