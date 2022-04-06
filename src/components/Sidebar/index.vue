@@ -169,25 +169,23 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$primary-color: #000000;
+$primary-color: #85C88A;
 .sider {
-  height: 670px;
+  height: 570px;
   -webkit-transition: all 0.6s;
   transition: all 0.6s;
-  background: #fff;
+  background: #EEEEEE;
   overflow-y: scroll;
   color: #666;
   z-index: 2;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
   .title-name {
     text-align: center;
-    font-size: 24px;
-    line-height: 64px;
+    font-size: 16px;
+    line-height: 60px;
     color: #fff;
-    background-color: #000;
-  }
-
-  .nav {
-    padding-top: 10px;
+    background-color: #85C88A;
   }
 
   .nav-item {
@@ -198,25 +196,22 @@ $primary-color: #000000;
     align-items: center;
     flex-flow: row nowrap;
     text-overflow: ellipsis;
-    font-size: 16px;
     min-height: 50px;
     transition: #fff 0.3s;
-    // box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     &.active {
       background: linear-gradient(
         to right,
-        rgb(255, 255, 255),
+        rgb(235,214,113),
         rgb(238, 239, 240)
       ); /* 标准的语法 */
-      opacity: 0.8;
-      border-right: 2px solid #000000;
+      // border-right: 2px solid #EBD671;
     }
     .nav-time {
       width: 16%;
       margin-top: 6px;
       padding-right: 4px;
       font-size: 12px;
-      color: #666;
+      color: #85C88A;
       line-height: 12px;
     }
   }
@@ -230,17 +225,17 @@ $primary-color: #000000;
       align-items: center;
       flex-flow: row nowrap;
       text-overflow: ellipsis;
-      font-size: 14px;
-      min-height: 30px;
+      font-size: 12px;
+      min-height: 26px;
       transition: rgb(117, 86, 86) 0.3s;
       &.scrollActive {
         background: linear-gradient(
           to right,
-          rgb(255, 255, 255),
+          rgb(235,214,113),
           rgb(238, 239, 240)
         );
-        opacity: 0.8;
-        border-right: 2px solid #000000;
+        // opacity: 0.8;
+        // border-right: 2px solid #EBD671;
       }
       .nav-link {
         padding: 10px;

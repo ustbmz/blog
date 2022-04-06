@@ -117,29 +117,30 @@ export default defineComponent({
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  padding: 0 20px;
+  background-color: #85C88A;
 
   .sidebar {
     position: fixed;
-    margin-top: 103px;
     width: 360px;
   }
   .content {
     margin-left: 380px;
-    margin-top: 110px;
     min-height: 754px;
+    background: #fff;
     width: 70%;
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    margin-bottom: 50px;
   }
 }
 .topline {
   position: relative;
   &:after {
-    position: absolute;
+    position: static;
     display: inline-block;
     content: '';
-    width: 68px;
+    width: 100%;
     height: 1px;
-    background: #000000;
     top: -5px;
     left: 0px;
     opacity: 0.4;

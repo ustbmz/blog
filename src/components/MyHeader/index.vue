@@ -1,19 +1,22 @@
 <template>
-  <div class="navbar">
-    <i class="iconfont icon-hacker home-icon" @click="togglePro()">
-      <span>一个钱端</span>
-    </i>
-    <ul class="item">
-      <li
-        v-for="item in lists"
-        :key="'item' + item.name"
-        :class="{ avtive: catalog === item.name }"
-        @update:catalog="title = $event"
-        @click="change(item)"
-      >
-        {{ item.name }}
-      </li>
-    </ul>
+  <div class="header">
+    <div class="navbar">
+      <i class="iconfont icon-hacker home-icon" @click="togglePro()">
+        <span>一个钱端</span>
+      </i>
+      <ul class="item">
+        <li
+          v-for="item in lists"
+          :key="'item' + item.name"
+          :class="{ avtive: catalog === item.name }"
+          @update:catalog="title = $event"
+          @click="change(item)"
+        >
+          {{ item.name }}
+        </li>
+      </ul>
+    </div>
+    <div class="empty-panel"></div>
   </div>
   <div class="projectlist" :class="{ showAni: isShow }">
     <div class="project-item" v-for="item in projects" :key="item.index">
@@ -144,6 +147,9 @@ export default defineComponent({
       isHover: computed(() => {
         return store.state.isHover
       }),
+      topFlag: computed(() => {
+        return store.state.topFlag
+      }),
       changeProject,
       ...toRefs(state)
     }
@@ -152,14 +158,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/_variables.scss';
-@import '~@/assets/icon/iconfont.css';
+@import "@/assets/styles/_variables.scss";
+@import "~@/assets/icon/iconfont.css";
 
 .home-icon {
   position: absolute;
   left: 15px;
   font-size: 16px;
-  color: #000000;
+  color: #85c88a;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -172,38 +178,40 @@ export default defineComponent({
     letter-spacing: 2px;
   }
 }
+.empty-panel {
+  height: 30px;
+  background: #85c88a;
+}
+.header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
 .navbar {
   cursor: pointer;
-  position: fixed;
-  top: 0;
   width: 100%;
-  z-index: 2;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 600;
   background-color: #fff;
-  opacity: 0.96;
-
-  color: #000000;
+  color: #333;
   width: 100%;
-  padding: 0;
   letter-spacing: 1px;
-  font-family: 'Source Sans Pro', sans-serif;
-  height: 83px;
-  line-height: 83px;
-  overflow: hidden;
+  font-family: "Source Sans Pro", sans-serif;
+  height: 63px;
+  line-height: 63px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: baseline;
-  box-shadow: 0 0 0.2 rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .item {
-  margin-top: 20px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  line-height: 50px;
 
   li {
     margin: 0 20px;
@@ -211,33 +219,29 @@ export default defineComponent({
 
   .avtive {
     opacity: 1;
-    border-bottom: 1px solid #000000;
+    color: #85c88a;
+    border-bottom: 1px solid #ebd671;
   }
 }
 
 .projectlist {
-  border-top: 1px solid #000000;
   position: fixed;
-  top: 90px;
+  top: 88px;
   left: -100%; /* test fixed + scroll, on retire la position top */
-  width: 100%;
+  width: 99.4%;
   height: 340px;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   z-index: 99;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-  // box-shadow: rgba(29, 32, 26, 0.4) 5px 5px, rgba(44, 54, 48, 0.3) 10px 10px,
-  //   rgba(62, 73, 65, 0.2) 15px 15px, rgba(58, 63, 60, 0.1) 20px 20px,
-  //   rgba(52, 58, 55, 0.05) 25px 25px;
-  opacity: 0.96;
+  background-color: #85c88a;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   -webkit-transition: all 0.5s ease-in;
   -moz-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
 
   &.showAni {
-    left: -10px;
+    left: 4px;
   }
 
   .project-item {
@@ -249,6 +253,7 @@ export default defineComponent({
     height: 80%;
     width: 20%;
     margin: 30px 25px;
+    background: #eeeeee;
 
     .icon-git {
       display: flex;

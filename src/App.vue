@@ -6,7 +6,7 @@
 @import '@/assets/styles/_variables.scss';
 body {
   font-family: Verdana, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
   margin: 0;
   padding: 0;

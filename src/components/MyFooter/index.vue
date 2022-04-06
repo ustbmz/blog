@@ -20,14 +20,15 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
-  position: static;
-  top: 100vh;
+  position: sticky;
+  height: 60px;
   width: 100%;
   background-color: #111111;
   display: flex;
   flex-flow: column;
   justify-content: flex-end;
   color: #fff;
+  z-index: 1999;
 
   .links {
     margin-top: 60px;
