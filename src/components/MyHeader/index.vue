@@ -149,12 +149,12 @@ export default defineComponent({
       if (docScrollTop > 1000 && state.topFlag) {
         setTimeout(() => {
           state.topFlag = false
-        }, 1000)
+        }, 500)
       }
       if (docScrollTop < 1000 && !state.topFlag) {
         setTimeout(() => {
           state.topFlag = true
-        }, 1000)
+        }, 300)
       }
     }
     onMounted(() => {
@@ -211,7 +211,7 @@ export default defineComponent({
     background-color: #fff;
     color: #333;
     width: 100%;
-    letter-spacing: 1px;
+    letter-spacing: 0.2px;
     height: 56px;
     line-height: 56px;
     display: flex;
@@ -238,7 +238,7 @@ export default defineComponent({
   }
 
   .empty-panel {
-    height: 10px;
+    height: 15px;
     background: #85c88a;
   }
 }
@@ -255,6 +255,10 @@ export default defineComponent({
   .navbar {
     height: 36px;
     line-height: 36px;
+  }
+  .empty-panel {
+    height: 10px;
+    background: #85c88a;
   }
 }
 

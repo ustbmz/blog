@@ -6,7 +6,7 @@
     </div>
   </div>
   <!-- <my-footer></my-footer> -->
-  <a class="btn-scroll-top show" @click="scrollTop" v-show="topFlag">
+  <a class="btn-scroll-top" @click="scrollTop">
     <i class="iconfont icon-dingbu" style="font-size: 36px"></i>
   </a>
 </template>
@@ -54,7 +54,6 @@ export default defineComponent({
       initMD: computed(() => {
         return state.item
       }),
-      topFlag: true,
       scrollTop
     }
   }
@@ -75,15 +74,8 @@ export default defineComponent({
   height: 2.625rem;
   transition: transform 0.25s ease-in-out, opacity 0.25s,
   background-color 0.25s ease-in-out;
-  transform: scale(0);
-  color: #000000;
+  color: #fff;
   text-align: center;
-  opacity: 0;
   z-index: 1025;
-}
-
-.btn-scroll-top.show {
-  opacity: 1;
-  transform: scale(1.001);
 }
 </style>

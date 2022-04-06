@@ -190,7 +190,6 @@ $primary-color: #85c88a;
     line-height: 60px;
     color: #fff;
     background-color: #85c88a;
-    border-top: 1px solid #EBD671;
   }
 
   .nav-item {
