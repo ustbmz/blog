@@ -9,7 +9,7 @@ export default createStore({
     mdlists: {} as MDInfo,
     mditem: {} as MDInfo,
     contentname: '' as string,
-    topFlag: false as boolean,
+    topFlag: true as boolean,
     showFlag: true as boolean
   },
   mutations: {

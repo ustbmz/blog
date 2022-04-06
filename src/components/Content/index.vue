@@ -118,7 +118,7 @@ export default defineComponent({
   flex-flow: row nowrap;
   justify-content: space-between;
   padding: 0 20px;
-  background-color: #85C88A;
+  background-color: #85c88a;
 
   .sidebar {
     position: fixed;
@@ -129,7 +129,7 @@ export default defineComponent({
     min-height: 754px;
     background: #fff;
     width: 70%;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     margin-bottom: 50px;
   }
 }
@@ -138,9 +138,10 @@ export default defineComponent({
   &:after {
     position: static;
     display: inline-block;
-    content: '';
+    content: "";
     width: 100%;
     height: 1px;
+    background: #EBD671;
     top: -5px;
     left: 0px;
     opacity: 0.4;

@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div :class="topFlag ? 'header' : 'header header_narrow'">
     <div class="navbar">
       <i class="iconfont icon-hacker home-icon" @click="togglePro()">
         <span>一个钱端</span>
@@ -18,6 +18,7 @@
     </div>
     <div class="empty-panel"></div>
   </div>
+
   <div class="projectlist" :class="{ showAni: isShow }">
     <div class="project-item" v-for="item in projects" :key="item.index">
       <img class="card" :src="item.img" />
@@ -38,7 +39,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, toRefs, computed } from 'vue'
+import { onMounted, defineComponent, reactive, ref, toRefs, computed } from 'vue'
 import store from '@/store'
 
 export default defineComponent({
@@ -53,6 +54,7 @@ export default defineComponent({
     const state = reactive({
       catalog: 'Html',
       isShow: false,
+      topFlag: true,
       hoverContral: '',
       showIndex: 0,
       projects: [
@@ -139,6 +141,26 @@ export default defineComponent({
       state.showIndex = val
     }
 
+    const onScroll = () => {
+      const docScrollTop =
+        document.documentElement && document.documentElement.scrollTop
+      state.scrollHeight = docScrollTop + 200
+
+      if (docScrollTop > 1000 && state.topFlag) {
+        setTimeout(() => {
+          state.topFlag = false
+        }, 1000)
+      }
+      if (docScrollTop < 1000 && !state.topFlag) {
+        setTimeout(() => {
+          state.topFlag = true
+        }, 1000)
+      }
+    }
+    onMounted(() => {
+      window.addEventListener('scroll', onScroll, false)
+    })
+
     return {
       change,
       show,
@@ -146,9 +168,6 @@ export default defineComponent({
       togglePro,
       isHover: computed(() => {
         return store.state.isHover
-      }),
-      topFlag: computed(() => {
-        return store.state.topFlag
       }),
       changeProject,
       ...toRefs(state)
@@ -161,66 +180,81 @@ export default defineComponent({
 @import "@/assets/styles/_variables.scss";
 @import "~@/assets/icon/iconfont.css";
 
-.home-icon {
-  position: absolute;
-  left: 15px;
-  font-size: 16px;
-  color: #85c88a;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-
-  span {
-    font-size: 16px;
-    margin-left: 10px;
-    align-items: center;
-    letter-spacing: 2px;
-  }
-}
-.empty-panel {
-  height: 30px;
-  background: #85c88a;
-}
 .header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 2;
-}
-.navbar {
-  cursor: pointer;
-  width: 100%;
+  transition: all 0.2s ease-out;
   font-size: 20px;
   font-weight: 600;
-  background-color: #fff;
-  color: #333;
-  width: 100%;
-  letter-spacing: 1px;
-  font-family: "Source Sans Pro", sans-serif;
-  height: 63px;
-  line-height: 63px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: baseline;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
 
-.item {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
+  .home-icon {
+    position: absolute;
+    left: 15px;
+    color: #85c88a;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
 
-  li {
-    margin: 0 20px;
+    span {
+      margin-left: 10px;
+      align-items: center;
+      letter-spacing: 2px;
+    }
   }
 
-  .avtive {
-    opacity: 1;
-    color: #85c88a;
-    border-bottom: 1px solid #ebd671;
+  .navbar {
+    cursor: pointer;
+    width: 100%;
+    background-color: #fff;
+    color: #333;
+    width: 100%;
+    letter-spacing: 1px;
+    height: 56px;
+    line-height: 56px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: baseline;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .item {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    li {
+      margin: 0 20px;
+    }
+
+    .avtive {
+      opacity: 1;
+      color: #85c88a;
+      border-bottom: 2px solid #ebd671;
+    }
+  }
+
+  .empty-panel {
+    height: 10px;
+    background: #85c88a;
+  }
+}
+
+.header_narrow {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.2s ease-out;
+
+  .navbar {
+    height: 36px;
+    line-height: 36px;
   }
 }
 

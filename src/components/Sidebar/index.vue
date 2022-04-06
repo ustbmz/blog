@@ -8,14 +8,14 @@
             @click="changeShowFlag(true)"
             :class="{ activeItem: showFlag === true }"
           >
-            <i class="iconfont icon-fenleimulu" style="font-size: 22px;"></i>
+            <i class="iconfont icon-fenleimulu" style="font-size: 22px"></i>
             <span class="ml1">目录</span>
           </li>
           <li
             @click="changeShowFlag(false)"
             :class="{ activeItem: showFlag === false }"
           >
-            <i class="iconfont icon-shuqian1" style="font-size: 22px;"></i>
+            <i class="iconfont icon-shuqian1" style="font-size: 22px"></i>
             <span class="ml1">书签</span>
           </li>
         </ul>
@@ -42,7 +42,7 @@
             scrollActive:
               itemTitleList.length > 2 &&
               scrollHeight > item.offsetHeight &&
-              scrollHeight < itemTitleList[index + 1].offsetHeight
+              scrollHeight < itemTitleList[index + 1].offsetHeight,
           }"
           :style="{ padding: `0 0 0 ${item.indent * 20}px` }"
         >
@@ -96,27 +96,18 @@ export default defineComponent({
     const onScroll = () => {
       const docScrollTop =
         document.documentElement && document.documentElement.scrollTop
-      console.log(docScrollTop, '高度')
       state.scrollHeight = docScrollTop + 200
 
-      // if (docScrollTop > 1000 && !store.state.topFlag) {
-      //   setTimeout(() => {
-      //     store.commit('setTopFlag', true)
-      //   }, 2000)
-      // }
-      // if (docScrollTop < 1000 && store.state.topFlag) {
-      //   setTimeout(() => {
-      //     store.commit('setTopFlag', false)
-      //   }, 2000)
-      // }
-      // const docClientHeight =
-      //   document.body.clientHeight && document.documentElement.clientHeight
-      // console.log(docClientHeight, '页面高度')
-
-      // const docScrollHeight = document.body.scrollHeight
-      // // console.log(this.docScrollHeight, '文档实际高度')
-      // const fromBottom = docScrollHeight - docScrollTop - docClientHeight
-      // console.log(fromBottom, '距离底部的高度')
+      if (docScrollTop > 1000 && store.state.topFlag) {
+        setTimeout(() => {
+          store.commit('setTopFlag', false)
+        }, 2000)
+      }
+      if (docScrollTop < 1000 && !store.state.topFlag) {
+        setTimeout(() => {
+          store.commit('setTopFlag', true)
+        }, 2000)
+      }
     }
 
     watch(
@@ -124,11 +115,11 @@ export default defineComponent({
         return state.scrollHeight
       },
       (newval, oldval) => {
-        console.log('🚀 ~ file: index.vue ~ line 72 ~ setup ~ oldval', oldval)
-        console.log('🚀 ~ file: index.vue ~ line 72 ~ setup ~ newval', newval)
+        console.log('🚀 ~ file: index.vue ~ line 118 ~ setup ~ oldval', oldval)
+        console.log('🚀 ~ file: index.vue ~ line 118 ~ setup ~ newval', newval)
+
         if (!store.state.showFlag) {
           const el = document.querySelector('.scrollActive')
-          console.log('el', el)
           if (el && el !== undefined && el !== null) {
             el.scrollIntoView({
               behavior: 'smooth',
@@ -169,12 +160,25 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$primary-color: #85C88A;
+$primary-color: #85c88a;
+
+@keyframes showHeader {
+  0% {
+    opacity: 0%;
+  }
+  40% {
+    opacity: 45%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
 .sider {
   height: 570px;
-  -webkit-transition: all 0.6s;
-  transition: all 0.6s;
-  background: #EEEEEE;
+  margin: 2px;
+  // animation: showHeader 2s;
+  background: #ffffff;
   overflow-y: scroll;
   color: #666;
   z-index: 2;
@@ -185,7 +189,8 @@ $primary-color: #85C88A;
     font-size: 16px;
     line-height: 60px;
     color: #fff;
-    background-color: #85C88A;
+    background-color: #85c88a;
+    border-top: 1px solid #EBD671;
   }
 
   .nav-item {
@@ -201,7 +206,7 @@ $primary-color: #85C88A;
     &.active {
       background: linear-gradient(
         to right,
-        rgb(235,214,113),
+        rgb(235, 214, 113),
         rgb(238, 239, 240)
       ); /* 标准的语法 */
       // border-right: 2px solid #EBD671;
@@ -211,7 +216,7 @@ $primary-color: #85C88A;
       margin-top: 6px;
       padding-right: 4px;
       font-size: 12px;
-      color: #85C88A;
+      color: #85c88a;
       line-height: 12px;
     }
   }
@@ -231,7 +236,7 @@ $primary-color: #85C88A;
       &.scrollActive {
         background: linear-gradient(
           to right,
-          rgb(235,214,113),
+          rgb(235, 214, 113),
           rgb(238, 239, 240)
         );
         // opacity: 0.8;
@@ -271,7 +276,7 @@ $primary-color: #85C88A;
   &:after {
     position: absolute;
     display: inline-block;
-    content: '';
+    content: "";
     width: 20px;
     height: 4px;
     background: $primary-color;
