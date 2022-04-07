@@ -57,4 +57,8 @@ a .body {
 .text-center {
   text-align: center;
 }
+
+a{
+  text-decoration:none;
+}
 </style>

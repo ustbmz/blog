@@ -39,8 +39,9 @@
 </template>
 
 <script>
-import { onMounted, defineComponent, reactive, ref, toRefs, computed } from 'vue'
+import { onMounted, defineComponent, reactive, toRefs, computed } from 'vue'
 import store from '@/store'
+import { ScrollToElem } from '@/utils/common.js'
 
 export default defineComponent({
   name: 'navbar',
@@ -115,8 +116,11 @@ export default defineComponent({
     const change = item => {
       // eslint-disable-next-line vue/no-mutating-props
       state.catalog = item.name
+      state.isShow = false
+      state.topFlag = true
       store.commit('setShowFlag', true)
       emit('update:catalog', state.catalog)
+      scrollTop()
     }
 
     const show = () => {
@@ -146,7 +150,7 @@ export default defineComponent({
         document.documentElement && document.documentElement.scrollTop
       state.scrollHeight = docScrollTop + 200
 
-      if (docScrollTop > 1000 && state.topFlag) {
+      if (docScrollTop > 1000 && state.topFlag && !state.isShow) {
         setTimeout(() => {
           state.topFlag = false
         }, 500)
@@ -161,6 +165,10 @@ export default defineComponent({
       window.addEventListener('scroll', onScroll, false)
     })
 
+    const scrollTop = () => {
+      ScrollToElem('.container', 500, -65)
+    }
+
     return {
       change,
       show,
@@ -169,6 +177,7 @@ export default defineComponent({
       isHover: computed(() => {
         return store.state.isHover
       }),
+      scrollTop,
       changeProject,
       ...toRefs(state)
     }
@@ -261,46 +270,46 @@ export default defineComponent({
     background: #85c88a;
   }
 }
-
 .projectlist {
   position: fixed;
-  top: 88px;
+  top: 56px;
   left: -100%; /* test fixed + scroll, on retire la position top */
-  width: 99.4%;
-  height: 340px;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   z-index: 99;
-  background-color: #85c88a;
+  background-color: #ebd671;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   -webkit-transition: all 0.5s ease-in;
   -moz-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
 
   &.showAni {
-    left: 4px;
+    left: 0px;
   }
 
   .project-item {
     display: flex;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     flex-flow: column nowrap;
     justify-content: space-between;
     border-radius: 8px;
-    height: 80%;
+    height: 40%;
     width: 20%;
     margin: 30px 25px;
     background: #eeeeee;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     .icon-git {
       display: flex;
       justify-content: center;
       align-items: center;
+      font-size: 20px;
+      text-decoration: none;
 
       .iconBig {
-        font-size: 24px;
-        color: #000000;
+        color: #85c88a;
         margin: 0 8px;
         height: 100%;
         align-items: center;
@@ -311,7 +320,7 @@ export default defineComponent({
         margin-right: 20px;
         align-items: center;
         height: 100%;
-        color: #333;
+        color: #85c88a;
       }
     }
 
@@ -329,8 +338,8 @@ export default defineComponent({
   }
 
   img {
-    border: 1px solid rgba(182, 108, 108, 0.01);
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
+    // border: 1px solid rgba(182, 108, 108, 0.01);
+    // box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
     border-radius: 8px 8px 0 0;
   }
 }
