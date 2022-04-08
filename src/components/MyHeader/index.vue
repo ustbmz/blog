@@ -2,7 +2,7 @@
   <div :class="topFlag ? 'header' : 'header header_narrow'">
     <div class="navbar">
       <i class="iconfont icon-hacker home-icon" @click="togglePro()">
-        <span>一个钱端</span>
+        <span class="logo-title">一个钱端</span>
       </i>
       <ul class="item">
         <li
@@ -341,6 +341,16 @@ export default defineComponent({
     // border: 1px solid rgba(182, 108, 108, 0.01);
     // box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
     border-radius: 8px 8px 0 0;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .logo-title{
+    display: none;
+  }
+
+  .iconfont{
+    font-size: 0px;
   }
 }
 </style>
