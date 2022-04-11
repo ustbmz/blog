@@ -94,23 +94,21 @@ export default defineComponent({
       ],
       lists: [
         {
-          name: 'Html'
+          name: 'C++'
         },
         {
-          name: 'Css'
+          name: 'Swift'
         },
         {
-          name: 'JavaScript'
+          name: 'JavaScirpt'
         },
         {
           name: 'LeetCode'
         },
         {
-          name: 'Vue'
-        },
-        {
-          name: 'Server'
+          name: 'Other'
         }
+
       ]
     })
     const change = item => {
