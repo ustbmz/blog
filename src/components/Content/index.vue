@@ -118,7 +118,7 @@ export default defineComponent({
   flex-flow: row nowrap;
   justify-content: space-between;
   padding: 0 20px;
-  background-color: #85c88a;
+  background-color: #2C9678;
 
   .sidebar {
     position: fixed;

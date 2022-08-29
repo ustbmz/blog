@@ -199,7 +199,7 @@ export default defineComponent({
   .home-icon {
     position: absolute;
     left: 15px;
-    color: #85c88a;
+    color: #248067;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -216,7 +216,7 @@ export default defineComponent({
     cursor: pointer;
     width: 100%;
     background-color: #fff;
-    color: #333;
+    color: #248067;
     width: 100%;
     letter-spacing: 0.2px;
     height: 56px;
@@ -234,19 +234,21 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     li {
-      margin: 0 20px;
+      padding: 0 20px;
     }
 
     .avtive {
       opacity: 1;
-      color: #85c88a;
-      border-bottom: 2px solid #ebd671;
+      color: #41b349;
+      background: #A4CAB6;
+      border-bottom: 2px solid #41b349;
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     }
   }
 
   .empty-panel {
     height: 15px;
-    background: #85c88a;
+    background: #2C9678;
   }
 }
 
@@ -265,7 +267,7 @@ export default defineComponent({
   }
   .empty-panel {
     height: 10px;
-    background: #85c88a;
+    background: #2C9678;
   }
 }
 .projectlist {
@@ -278,7 +280,7 @@ export default defineComponent({
   flex-flow: row wrap;
   justify-content: center;
   z-index: 99;
-  background-color: #ebd671;
+  background-color: #9FA39A;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   -webkit-transition: all 0.5s ease-in;
   -moz-transition: all 0.5s ease-in;
@@ -307,7 +309,7 @@ export default defineComponent({
       text-decoration: none;
 
       .iconBig {
-        color: #85c88a;
+        color: #2C9678;
         margin: 0 8px;
         height: 100%;
         align-items: center;
@@ -318,7 +320,7 @@ export default defineComponent({
         margin-right: 20px;
         align-items: center;
         height: 100%;
-        color: #85c88a;
+        color: #2C9678;
       }
     }
 

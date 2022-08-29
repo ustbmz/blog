@@ -160,7 +160,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$primary-color: #85c88a;
+$primary-color: #2C9678;
 
 @keyframes showHeader {
   0% {
@@ -189,7 +189,8 @@ $primary-color: #85c88a;
     font-size: 16px;
     line-height: 60px;
     color: #fff;
-    background-color: #85c88a;
+    background-color: #A4CAB6;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
   }
 
   .nav-item {
@@ -215,7 +216,7 @@ $primary-color: #85c88a;
       margin-top: 6px;
       padding-right: 4px;
       font-size: 12px;
-      color: #85c88a;
+      color: #2C9678;
       line-height: 12px;
     }
   }

@@ -62,7 +62,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .container {
-  background-color: #85c88a;
+  background-color: #2C9678;
 }
 
 .btn-scroll-top {
