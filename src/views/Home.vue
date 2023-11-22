@@ -32,7 +32,7 @@ export default defineComponent({
 
     onMounted(() => {
       console.log('List vue onMounted')
-      state.title = 'html'
+      state.title = 'javascript'
       // handleGetList()
     })
 

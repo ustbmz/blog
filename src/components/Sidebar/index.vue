@@ -42,7 +42,7 @@
             scrollActive:
               itemTitleList.length > 2 &&
               scrollHeight > item.offsetHeight &&
-              scrollHeight < itemTitleList[index + 1].offsetHeight,
+              scrollHeight < itemTitleList[index + 1].offsetHeight
           }"
           :style="{ padding: `0 0 0 ${item.indent * 20}px` }"
         >
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import store from '@/store'
+import store from "@/store";
 import {
   defineComponent,
   computed,
@@ -64,76 +64,76 @@ import {
   watch,
   onMounted,
   toRefs
-} from 'vue'
-import { ScrollToElem } from '@/utils/common.js'
-import { moment } from '@/utils/memont'
+} from "vue";
+import { ScrollToElem } from "@/utils/common.js";
+import { moment } from "@/utils/memont";
 
 export default defineComponent({
-  props: ['titlelist'],
-  setup (props, { emit }) {
+  props: ["titlelist"],
+  setup(props, { emit }) {
     const state = reactive({
-      clickname: '',
+      clickname: "",
       scrollHeight: 0
-    })
+    });
 
     const itemTitleList = computed(() => {
-      return props.titlelist
-    })
+      return props.titlelist;
+    });
 
     const changeShowFlag = val => {
-      store.commit('setShowFlag', val)
-    }
+      store.commit("setShowFlag", val);
+    };
     const changeContent = item => {
-      ScrollToElem('.container', 500, -65)
-      store.commit('setMDitem', item)
-      store.commit('setContentName', item.title)
-    }
+      ScrollToElem(".container", 500, -65);
+      store.commit("setMDitem", item);
+      store.commit("setContentName", item.title);
+    };
     const handleAnchorClick = item => {
-      state.clickname = item.title
-      emit('handleAnchorClick', item)
-    }
+      state.clickname = item.title;
+      emit("handleAnchorClick", item);
+    };
 
     const onScroll = () => {
       const docScrollTop =
-        document.documentElement && document.documentElement.scrollTop
-      state.scrollHeight = docScrollTop + 200
+        document.documentElement && document.documentElement.scrollTop;
+      state.scrollHeight = docScrollTop + 200;
 
       if (docScrollTop > 1000 && store.state.topFlag) {
         setTimeout(() => {
-          store.commit('setTopFlag', false)
-        }, 2000)
+          store.commit("setTopFlag", false);
+        }, 2000);
       }
       if (docScrollTop < 1000 && !store.state.topFlag) {
         setTimeout(() => {
-          store.commit('setTopFlag', true)
-        }, 2000)
+          store.commit("setTopFlag", true);
+        }, 2000);
       }
-    }
+    };
 
     watch(
       () => {
-        return state.scrollHeight
+        return state.scrollHeight;
       },
       (newval, oldval) => {
-        console.log('🚀 ~ file: index.vue ~ line 118 ~ setup ~ oldval', oldval)
-        console.log('🚀 ~ file: index.vue ~ line 118 ~ setup ~ newval', newval)
+        console.log("🚀 ~ file: index.vue ~ line 118 ~ setup ~ oldval", oldval);
+        console.log("🚀 ~ file: index.vue ~ line 118 ~ setup ~ newval", newval);
 
         if (!store.state.showFlag) {
-          const el = document.querySelector('.scrollActive')
+          const el = document.querySelector(".scrollActive");
           if (el && el !== undefined && el !== null) {
             el.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center',
-              inline: 'nearest'
-            })
+              behavior: "smooth",
+              block: "center",
+              inline: "nearest"
+            });
           }
         }
       }
-    )
+    );
 
     onMounted(() => {
-      window.addEventListener('scroll', onScroll, false)
-    })
+      window.addEventListener("scroll", onScroll, false);
+    });
 
     return {
       ...toRefs(state),
@@ -142,25 +142,25 @@ export default defineComponent({
       changeShowFlag,
       handleAnchorClick,
       lists: computed(() => {
-        return store.state.mdlists
+        return store.state.mdlists;
       }),
       changeContent,
       catalog: computed(() => {
-        return store.state.title.toUpperCase()
+        return store.state.title.toUpperCase();
       }),
       contentName: computed(() => {
-        return store.state.contentname
+        return store.state.contentname;
       }),
       showFlag: computed(() => {
-        return store.state.showFlag
+        return store.state.showFlag;
       })
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
-$primary-color: #2C9678;
+$primary-color: #2c9678;
 
 @keyframes showHeader {
   0% {
@@ -189,8 +189,10 @@ $primary-color: #2C9678;
     font-size: 16px;
     line-height: 60px;
     color: #fff;
-    background-color: #A4CAB6;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+    background-color: #a4cab6;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+      rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+      rgba(0, 0, 0, 0.07) 0px 16px 16px;
   }
 
   .nav-item {
@@ -216,7 +218,7 @@ $primary-color: #2C9678;
       margin-top: 6px;
       padding-right: 4px;
       font-size: 12px;
-      color: #2C9678;
+      color: #2c9678;
       line-height: 12px;
     }
   }
